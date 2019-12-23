@@ -1,14 +1,14 @@
 var pecas = document.querySelectorAll('.movel');
 
-var tamW = [161, 161, 161, 161, 161, 161, 161, 161, 161]
-var tamH = [161, 161, 161, 161, 161, 161, 161, 161, 161]
+var tamW = [134, 192, 134, 163, 134, 163, 134, 192, 134]
+var tamH = [163, 134, 163, 134, 192, 134, 163, 134, 163]
 
 for(var i=0; i< pecas.length; i++){
     pecas[i].setAttribute("width", tamW[i]);
     pecas[i].setAttribute("height", tamH[i]);
     pecas[i].setAttribute("x", Math.floor((Math.random() * 10) +1));
-    pecas[i].setAttribute("y", Math.floor((Math.random() * 450) +1));
-    pecas[i].setAttribute("onmousedown", "selecionarElemento(evt)");
+    pecas[i].setAttribute("y", Math.floor((Math.random() * 500) +1));
+    pecas[i].setAttribute("ontouchstart", "selecionarElemento(evt)");
 }
 
 var elementSelect = 0;
@@ -19,33 +19,33 @@ var currentPosY = 0;
 
 function selecionarElemento(evt){
     elementSelect = reordernar(evt);
-    currentX = evt.clientX;
-    currentY = evt.clientY;
+    currentX = evt.touches[0].clientX;
+    currentY = evt.touches[0].clientY;
     currentPosX = parseFloat(elementSelect.getAttribute("x"));
     currentPosY = parseFloat(elementSelect.getAttribute("y"));
-    elementSelect.setAttribute("onmousemove", "moverElemento(evt)");
+    elementSelect.setAttribute("ontouchmove", "moverElemento(evt)");
 }
 
 function moverElemento(evt){
-    var dx = evt.clientX - currentX;
-    var dy = evt.clientY - currentY;
+    var dx = evt.touches[0].clientX - currentX;
+    var dy = evt.touches[0].clientY - currentY;
     currentPosX = currentPosX + dx;
     currentPosY = currentPosY + dy;
     elementSelect.setAttribute("x", currentPosX);
     elementSelect.setAttribute("y", currentPosY);
-    currentX = evt.clientX;
-    currentY = evt.clientY;
-    elementSelect.setAttribute("onmouseout", "deselecionarElemento(evt)")
-    elementSelect.setAttribute("onmouseup", "deselecionarElemento(evt)")
+    currentX = evt.touches[0].clientX;
+    currentY = evt.touches[0].clientY;
+    elementSelect.setAttribute("ontouchend", "deselecionarElemento(evt)")
+    elementSelect.setAttribute("ontouchcancel", "deselecionarElemento(evt)")
     unir();
 }
 
 function deselecionarElemento(evt){
     verificar();
     if(elementSelect != 0){
-        elementSelect.removeAttribute("onmousemove");
-        elementSelect.removeAttribute("onmouseout");
-        elementSelect.removeAttribute("onmouseup");
+        elementSelect.removeAttribute("ontouchmove");
+        elementSelect.removeAttribute("ontouchend");
+        elementSelect.removeAttribute("ontouchcancel");
         elementSelect = 0;
     }
 }
@@ -62,8 +62,8 @@ function reordernar(evt){
     return container.lastChild.firstChild;
 }
 
-var origX = [200, 361, 522, 200, 361, 522, 200, 361, 522];
-var origY = [100, 100, 100, 261, 261, 261, 420, 420, 420];
+var origX = [200, 304, 466, 200, 333, 437, 200, 304, 466];
+var origY = [100, 100, 100, 233, 204, 233, 337, 366, 337];
 
 function unir(){
     for(var i = 0; i < pecas.length; i++){
