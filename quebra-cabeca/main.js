@@ -1,7 +1,7 @@
 var pecas = document.querySelectorAll('.movel');
 
-var tamW = [161, 161, 161, 161, 161, 161, 161, 161, 161]
-var tamH = [161, 161, 161, 161, 161, 161, 161, 161, 161]
+var tamW = [92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92]
+var tamH = [115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115]
 
 for(var i=0; i< pecas.length; i++){
     pecas[i].setAttribute("width", tamW[i]);
@@ -62,8 +62,8 @@ function reordernar(evt){
     return container.lastChild.firstChild;
 }
 
-var origX = [200, 361, 522, 200, 361, 522, 200, 361, 522];
-var origY = [100, 100, 100, 261, 261, 261, 420, 420, 420];
+var origX = [200, 292, 383, 474, 200, 292, 383, 474, 200, 292, 383, 474, 200, 292, 383, 474];
+var origY = [100, 100, 100, 100, 215, 215, 215, 215, 329, 329, 329, 329, 443, 443, 443, 443];
 
 function unir(){
     for(var i = 0; i < pecas.length; i++){
@@ -86,5 +86,6 @@ function verificar(){
             console.log(encaixadas);
         }
     }
-    if(encaixadas == 9){alert("CONGRATULATIONS");}
+    if(encaixadas == pecas.length){alert("CONGRATULATIONS");}
 }
+
