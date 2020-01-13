@@ -1,5 +1,4 @@
 var pecas = document.querySelectorAll('.movel');
-var pecasG = document.querySelectorAll('.containerPec');
 
 // TAMANHO DAS PEÇAS 
 var tamW = [92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92]
@@ -10,7 +9,7 @@ for(var i=0; i< pecas.length; i++){
     pecas[i].setAttribute("width", tamW[i]);
     pecas[i].setAttribute("height", tamH[i]);
     pecas[i].setAttribute("transform-origin", "center");
-    pecasG[i].setAttribute("transform", "rotate(" + Math.floor(Math.random() * 4) * 90 + ")");
+    pecas[i].setAttribute("transform", "rotate(" + Math.floor(Math.random() * 4) * 90 + ")");
     pecas[i].setAttribute("x", Math.floor((Math.random() * 10) +1));
     pecas[i].setAttribute("y", Math.floor((Math.random() * 450) +1));
     pecas[i].setAttribute("onmousedown", "selecionarElemento(evt)");
