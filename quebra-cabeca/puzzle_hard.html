@@ -5,28 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quebra Cabeça</title>
     <link rel="stylesheet" href="main.css" />
-
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        section{
+            margin: 0 auto;
+            width: 50%;
+            height: 40em;
+            position: relative;
+            border: 1px solid black;
+        }
+        div{
+            position: absolute;
+        }
+        img{
+            user-select: none;
+        }
+    </style>
+    
 </head>
-<body>
-    <svg width="695" height="595" id="container">
-        <g id="fundo"><image href="capitaoamericad\capitaoamerica.jpg" width="367" height="459" x="200" y="100"/></g>
-        <g class="containerPec" id="0"><image href="capitaoamericad\p_01.png" class="movel"/></g>
-        <g class="containerPec" id="1"><image href="capitaoamericad\p_02.png" class="movel"/></g>
-        <g class="containerPec" id="2"><image href="capitaoamericad\p_03.png" class="movel"/></g>
-        <g class="containerPec" id="3"><image href="capitaoamericad\p_04.png" class="movel"/></g>
-        <g class="containerPec" id="4"><image href="capitaoamericad\p_05.png" class="movel"/></g>
-        <g class="containerPec" id="5"><image href="capitaoamericad\p_06.png" class="movel"/></g>
-        <g class="containerPec" id="6"><image href="capitaoamericad\p_07.png" class="movel"/></g>
-        <g class="containerPec" id="7"><image href="capitaoamericad\p_08.png" class="movel"/></g>
-        <g class="containerPec" id="8"><image href="capitaoamericad\p_09.png" class="movel"/></g>
-        <g class="containerPec" id="9"><image href="capitaoamericad\p_10.png" class="movel"/></g>
-        <g class="containerPec" id="10"><image href="capitaoamericad\p_11.png" class="movel"/></g>
-        <g class="containerPec" id="11"><image href="capitaoamericad\p_12.png" class="movel"/></g>
-        <g class="containerPec" id="12"><image href="capitaoamericad\p_13.png" class="movel"/></g>
-        <g class="containerPec" id="13"><image href="capitaoamericad\p_14.png" class="movel"/></g>
-        <g class="containerPec" id="14"><image href="capitaoamericad\p_15.png" class="movel"/></g>
-        <g class="containerPec" id="15"><image href="capitaoamericad\p_16.png" class="movel"/></g>
-    </svg>
+<body onkeydown="girarElemento(event)">
+    <section width="695" height="595" id="container">
+        <div id="fundo"><img src="capitaoamericaf\capitaoamerica.jpg" width="367" height="459" style="position:absolute; left:200px; top:100px;" /></div>
+        <div class="contPecas" id="0"><img class="movel" src="capitaoamericad\p_01.png" /></div>
+        <div class="contPecas" id="1"><img class="movel" src="capitaoamericad\p_02.png" /></div>
+        <div class="contPecas" id="2"><img class="movel" src="capitaoamericad\p_03.png" /></div>
+        <div class="contPecas" id="3"><img class="movel" src="capitaoamericad\p_04.png" /></div>
+        <div class="contPecas" id="4"><img class="movel" src="capitaoamericad\p_05.png" /></div>
+        <div class="contPecas" id="5"><img class="movel" src="capitaoamericad\p_06.png" /></div>
+        <div class="contPecas" id="6"><img class="movel" src="capitaoamericad\p_07.png" /></div>
+        <div class="contPecas" id="7"><img class="movel" src="capitaoamericad\p_08.png" /></div>
+        <div class="contPecas" id="8"><img class="movel" src="capitaoamericad\p_09.png" /></div>
+        <div class="contPecas" id="9"><img class="movel" src="capitaoamericad\p_10.png" /></div>
+        <div class="contPecas" id="10"><img class="movel" src="capitaoamericad\p_11.png" /></div>
+        <div class="contPecas" id="11"><img class="movel" src="capitaoamericad\p_12.png" /></div>
+        <div class="contPecas" id="12"><img class="movel" src="capitaoamericad\p_13.png" /></div>
+        <div class="contPecas" id="13"><img class="movel" src="capitaoamericad\p_14.png" /></div>
+        <div class="contPecas" id="14"><img class="movel" src="capitaoamericad\p_15.png" /></div>
+        <div class="contPecas" id="15"><img class="movel" class="movel" src="capitaoamericad\p_16.png" /></div>
+    </section>
 </body>
 <script src="puzzle_hard.js"></script>
+
 </html>

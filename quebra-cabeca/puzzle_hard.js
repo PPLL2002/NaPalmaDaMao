@@ -1,4 +1,6 @@
 var pecas = document.querySelectorAll('.movel');
+var contPecas = document.querySelectorAll('.contPecas');
+var rotation = [];
 
 // TAMANHO DAS PEÇAS 
 var tamW = [92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92]
@@ -6,13 +8,15 @@ var tamH = [115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115
 
 // DISTRIBUIÇÃO DAS PEÇAS NA TELA
 for(var i=0; i< pecas.length; i++){
-    pecas[i].setAttribute("width", tamW[i]);
-    pecas[i].setAttribute("height", tamH[i]);
-    pecas[i].setAttribute("transform-origin", "center");
-    pecas[i].setAttribute("transform", "rotate(" + Math.floor(Math.random() * 4) * 90 + ")");
-    pecas[i].setAttribute("x", Math.floor((Math.random() * 10) +1));
-    pecas[i].setAttribute("y", Math.floor((Math.random() * 450) +1));
-    pecas[i].setAttribute("onmousedown", "selecionarElemento(evt)");
+    pecas[i].style.width = tamW[i];
+    pecas[i].style.height = tamH[i];
+    contPecas[i].style.width = tamW[i];
+    contPecas[i].style.height = tamH[i];
+    rotation[i] = Math.floor(Math.random() * 4) * 90;
+    contPecas[i].style.transform = "rotate(" + rotation[i] + "deg)";
+    contPecas[i].style.left = Math.floor((Math.random() * 10) + 1) + "px";
+    contPecas[i].style.top = Math.floor((Math.random() * 450) + 1) + "px";
+    pecas[i].setAttribute("onmousedown", "selecionarElemento(event)");
 }
 
 var elementSelect = 0;
@@ -25,9 +29,9 @@ function selecionarElemento(evt){
     elementSelect = reordernar(evt);
     currentX = evt.clientX;
     currentY = evt.clientY;
-    currentPosX = parseFloat(elementSelect.getAttribute("x"));
-    currentPosY = parseFloat(elementSelect.getAttribute("y"));
-    elementSelect.setAttribute("onmousemove", "moverElemento(evt)");
+    currentPosX = parseFloat(elementSelect.style.left);
+    currentPosY = parseFloat(elementSelect.style.top);
+    elementSelect.setAttribute("onmousemove", "moverElemento(event)");
 }
 
 function moverElemento(evt){
@@ -35,13 +39,26 @@ function moverElemento(evt){
     var dy = evt.clientY - currentY;
     currentPosX = currentPosX + dx;
     currentPosY = currentPosY + dy;
-    elementSelect.setAttribute("x", currentPosX);
-    elementSelect.setAttribute("y", currentPosY);
+    elementSelect.style.left = currentPosX + "px";
+    elementSelect.style.top = currentPosY + "px";
     currentX = evt.clientX;
     currentY = evt.clientY;
-    elementSelect.setAttribute("onmouseout", "deselecionarElemento(evt)")
-    elementSelect.setAttribute("onmouseup", "deselecionarElemento(evt)")
+    elementSelect.setAttribute("onmouseout", "deselecionarElemento(event)")
+    elementSelect.setAttribute("onmouseup", "deselecionarElemento(event)")
     unir();
+}
+
+function girarElemento(e){
+    if(e.key == "ArrowRight" && elementSelect != 0) {
+        var id = elementSelect.getAttribute("id");
+        rotation[id] += 90; 
+        elementSelect.style.transform = "rotate(" + rotation[id] + "deg)";
+    }
+    if(e.key == "ArrowLeft" && elementSelect != 0) {
+        var id = elementSelect.getAttribute("id");
+        rotation[id] -= 90; 
+        elementSelect.style.transform = "rotate(" + rotation[id] + "deg)";
+    }
 }
 
 function deselecionarElemento(evt){
@@ -62,35 +79,37 @@ function reordernar(evt){
     var id = cPecas.getAttribute("id");
     container.removeChild(document.getElementById(id));
     container.appendChild(cloneCP);
-    
-    return container.lastChild.firstChild;
+    return container.lastChild;
 }
 
 // LOCAL CORRETO DE CADA PEÇA
 var origX = [200, 292, 383, 474, 200, 292, 383, 474, 200, 292, 383, 474, 200, 292, 383, 474];
-var origY = [100, 100, 100, 100, 215, 215, 215, 215, 329, 329, 329, 329, 443, 443, 443, 443];
+var origY = [100, 100, 100, 100, 215, 215, 215, 215, 330, 330, 330, 330, 443, 443, 443, 443];
 
 function unir(){
     for(var i = 0; i < pecas.length; i++){
         if(Math.abs(currentPosX-origX[i]) < 15 && Math.abs(currentPosY-origY[i]) < 15){
-            elementSelect.setAttribute("x", origX[i]);
-            elementSelect.setAttribute("y", origY[i]);
+            elementSelect.style.left = origX[i] + "px";
+            elementSelect.style.top = origY[i] + "px";
         }
     }
 }
 
 function verificar(){
     var encaixadas = 0;
-    var cPecas = document.getElementsByClassName('containerPec');
+    var cPecas = document.getElementsByClassName('contPecas');
     for(var i = 0; i < pecas.length; i++){
-        var posX = parseFloat(cPecas[i].firstChild.getAttribute("x"));
-        var posY = parseFloat(cPecas[i].firstChild.getAttribute("y"));
+        var posX = parseFloat(cPecas[i].style.left);
+        var posY = parseFloat(cPecas[i].style.top);
         var id = cPecas[i].getAttribute("id");
-        if(origX[id] == posX && origY[id] == posY){
+        if(origX[id] == posX && origY[id] == posY && Number.isInteger(rotation[id]/360)){
             encaixadas += 1;
-            console.log(encaixadas);
         }
     }
-    if(encaixadas == pecas.length){alert("CONGRATULATIONS");}
+    if(encaixadas == pecas.length){
+        for(var i = 0; i < pecas.length; i++){
+            console.log(Number.isInteger(rotation[i]/360));
+        }
+        alert("CONGRATULATIONS");
+    }
 }
-
