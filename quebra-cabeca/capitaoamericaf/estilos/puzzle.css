@@ -1,0 +1,8 @@
+#container{
+    display: block;
+    margin: 0 auto;
+}
+
+#fundo{
+    opacity: 0.3;
+}

@@ -82,7 +82,7 @@ function reordernar(evt){
 
 // LOCAL CORRETO DE CADA PEÇA
 var origX = [200, 292, 383, 474, 200, 292, 383, 474, 200, 292, 383, 474, 200, 292, 383, 474];
-var origY = [100, 100, 100, 100, 215, 215, 215, 215, 330, 330, 330, 330, 443, 443, 443, 443];
+var origY = [50, 50, 50, 50, 165, 165, 165, 165, 280, 280, 280, 280, 393, 393, 393, 393];
 
 function unir(){
     for(var i = 0; i < pecas.length; i++){
@@ -102,12 +102,10 @@ function verificar(){
         var id = cPecas[i].getAttribute("id");
         if(origX[id] == posX && origY[id] == posY && Number.isInteger(rotation[id]/360)){
             encaixadas += 1;
-            console.log(encaixadas);
         }
     }
     if(encaixadas == pecas.length){
         for(var i = 0; i < pecas.length; i++){
-            console.log(Number.isInteger(rotation[i]/360));
         }
         alert("CONGRATULATIONS");
     }

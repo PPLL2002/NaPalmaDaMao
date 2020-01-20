@@ -66,7 +66,7 @@ function reordernar(evt){
 
 // LOCAL CORRETO DE CADA PEÇA
 var origX = [200, 322, 443, 200, 322, 443];
-var origY = [100, 100, 100, 329, 329, 329];
+var origY = [50, 50, 50, 279, 279, 279];
 
 function unir(){
     for(var i = 0; i < pecas.length; i++){

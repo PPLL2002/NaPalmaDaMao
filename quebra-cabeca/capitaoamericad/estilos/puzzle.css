@@ -1,0 +1,26 @@
+*{margin: 0; padding: 0; box-sizing: border-box;}
+section{
+    margin: 0 auto;
+    width: 100%;
+    height: 40em;
+    position: relative;
+    background-image: url('../imagens/capitaoamerica.png');
+    background-size: 367px 459px;
+    background-repeat: no-repeat;
+    background-position: 200px 50px;
+}
+.contPecas{
+    position: absolute;
+}
+img{
+    user-select: none;
+}
+
+#container{
+    display: block;
+    margin: 0 auto;
+}
+
+#fundo{
+    opacity: 0.3;
+}

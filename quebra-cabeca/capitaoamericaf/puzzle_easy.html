@@ -1,22 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quebra Cabeça</title>
-    <link rel="stylesheet" href="estilos/main.css" />
-
+    <meta charset="utf-8"/>
+    <title>Quebra-cabeça</title>
+    <link rel="icon" href="imagens/iconMathLibras.png">
+    <meta name="viewport">
+    <link rel="stylesheet" type="text/css" href="estilos/main.css"/>
+    <link rel="stylesheet" href="estilos/puzzle.css" />
 </head>
 <body>
-    <svg width="695" height="595" id="container">
-        <g id="fundo"><image href="imagens\capitaoamerica.jpg" width="367" height="459" x="200" y="100"/></g>
-        <g class="containerPec" id="0"><image href="imagens\p_01.png" class="movel"/></g>
-        <g class="containerPec" id="1"><image href="imagens\p_02.png" class="movel"/></g>
-        <g class="containerPec" id="2"><image href="imagens\p_03.png" class="movel"/></g>
-        <g class="containerPec" id="3"><image href="imagens\p_04.png" class="movel"/></g>
-        <g class="containerPec" id="4"><image href="imagens\p_05.png" class="movel"/></g>
-        <g class="containerPec" id="5"><image href="imagens\p_06.png" class="movel"/></g>
-    </svg>
+    <div class="button">
+        <button onclick="Mudarfonte(1)">Aumentar fonte [1]</button>
+        <button onclick="Mudarfonte(2)">Diminuir fonte [2]</button>
+    </div>
+    
+    <header>
+        <h1><a href="http://napalmadamao.ifrn.edu.br/mathlibras.html"><img src="imagens/MathLibras.png" alt="logo do site"/>Math Libras</a></h1>
+        <h2>Aulas de matemática básica</h2>
+        
+        <nav>
+            <ol>
+                <li><a href="#">AULAS</a></li>
+                <li><a href="#">ANIMAÇÕES</a></li>
+                <li><a href="#">LISTAS</a></li>
+                <li><a href="#">OBJETOS</a></li>
+            </ol>
+        </nav>
+    </header>
+    
+    <main onkeydown="girarElemento(event)">
+        <svg width="640" height="550" id="container">
+            <g id="fundo"><image href="imagens\capitaoamerica.jpg" width="367" height="459" x="200" y="50"/></g>
+            <g class="containerPec" id="0"><image href="imagens\p_01.png" class="movel"/></g>
+            <g class="containerPec" id="1"><image href="imagens\p_02.png" class="movel"/></g>
+            <g class="containerPec" id="2"><image href="imagens\p_03.png" class="movel"/></g>
+            <g class="containerPec" id="3"><image href="imagens\p_04.png" class="movel"/></g>
+            <g class="containerPec" id="4"><image href="imagens\p_05.png" class="movel"/></g>
+            <g class="containerPec" id="5"><image href="imagens\p_06.png" class="movel"/></g>
+        </svg>
+    </main>
+    
+    <footer>
+        <div class="endereco">
+            <address>
+                <ol>
+                    <li><img src="imagens/pointer.png" alt="Endereço físico"> IFRN | Natal - Central</li></br>
+                    <li><img src="imagens/telefone.png" alt="Telefone"> (84) 9 8797 - 2102</li></br>
+                    <li><img src="imagens/email.png" alt="Email"> geraldo.felipe@ifrn.edu.br</li>
+                </ol>
+            </address>
+        </div>
+        
+        <div class="logo">
+            <h1><a href="http://napalmadamao.ifrn.edu.br/"><img src="imagens/logo.png" alt="logo do site"/>EDUCAÇÃO NA <br/>PALMA DA MÃO</a></h1>
+            <h2>Repositório de objetos de aprendizagem</h2>
+        </div>
+        
+        <div class="creditos">
+            <p>Prof.Geraldo Felipe e Prof. Luciano Nóbrega | IFRN/CNAT</p>
+            <p>Projeto Educação na Palma da Mão | IFRN-CNAT</p>
+            <p>Site em desenvolvimento | Setembro de 2019</p>
+        </div>
+    </footer>
 </body>
 <script src="js/puzzle_easy.js"></script>
 </html>
