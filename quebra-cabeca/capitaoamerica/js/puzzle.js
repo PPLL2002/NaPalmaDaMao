@@ -43,7 +43,6 @@ function moverElemento(evt){
 }
 
 function deselecionarElemento(evt){
-    verificar();
     if(elementSelect != 0){
         elementSelect.removeAttribute("onmousemove");
         elementSelect.removeAttribute("onmouseout");
@@ -86,9 +85,9 @@ function verificar(){
         var id = cPecas[i].getAttribute("id");
         if(origX[id] == posX && origY[id] == posY){
             encaixadas += 1;
-            console.log(encaixadas);
         }
     }
     if(encaixadas == pecas.length){alert("CONGRATULATIONS");}
+    else{alert("ERRO!");}
 }
 

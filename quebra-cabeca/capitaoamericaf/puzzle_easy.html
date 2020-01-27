@@ -31,13 +31,14 @@
     <main onkeydown="girarElemento(event)">
         <svg width="640" height="550" id="container">
             <g id="fundo"><image href="imagens\capitaoamerica.jpg" width="367" height="459" x="200" y="50"/></g>
-            <g class="containerPec" id="0"><image href="imagens\p_01.png" class="movel"/></g>
-            <g class="containerPec" id="1"><image href="imagens\p_02.png" class="movel"/></g>
-            <g class="containerPec" id="2"><image href="imagens\p_03.png" class="movel"/></g>
-            <g class="containerPec" id="3"><image href="imagens\p_04.png" class="movel"/></g>
-            <g class="containerPec" id="4"><image href="imagens\p_05.png" class="movel"/></g>
-            <g class="containerPec" id="5"><image href="imagens\p_06.png" class="movel"/></g>
+            <g class="containerPec" id="0"><image href="imagens\p_01.png" class="movel"/><rect class="bordas" /></g>
+            <g class="containerPec" id="1"><image href="imagens\p_02.png" class="movel"/><rect class="bordas" /></g>
+            <g class="containerPec" id="2"><image href="imagens\p_03.png" class="movel"/><rect class="bordas" /></g>
+            <g class="containerPec" id="3"><image href="imagens\p_04.png" class="movel"/><rect class="bordas" /></g>
+            <g class="containerPec" id="4"><image href="imagens\p_05.png" class="movel"/><rect class="bordas" /></g>
+            <g class="containerPec" id="5"><image href="imagens\p_06.png" class="movel"/><rect class="bordas" /></g>
         </svg>
+        <input type="submit" value="confirmar" onclick="verificar()"/>
     </main>
     
     <footer>
