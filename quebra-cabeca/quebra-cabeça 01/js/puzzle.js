@@ -104,8 +104,6 @@ function verificar(){
         var posX = parseFloat(cPecas[i].firstChild.getAttribute("x"));
         var posY = parseFloat(cPecas[i].firstChild.getAttribute("y"));
         var id = cPecas[i].getAttribute("id");
-        //cPecas[i].childNodes[1].setAttribute("x", posX);
-        //cPecas[i].childNodes[1].setAttribute("y", posY);
         if(origX[id] == posX && origY[id] == posY){
             encaixadas += 1;
             cPecas[i].childNodes[1].setAttribute("style", "display:block;");

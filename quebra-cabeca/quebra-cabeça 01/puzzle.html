@@ -7,61 +7,19 @@
     <meta name="viewport">
     <link rel="stylesheet" type="text/css" href="estilos/main.css"/>
     <link rel="stylesheet" href="estilos/puzzle.css" />
+    <style>
+    </style>
 </head>
 <body>
-    <div class="button">
-        <button onclick="Mudarfonte(1)">Aumentar fonte [1]</button>
-        <button onclick="Mudarfonte(2)">Diminuir fonte [2]</button>
-    </div>
-    
-    <header>
-        <h1><a href="http://napalmadamao.ifrn.edu.br/mathlibras.html"><img src="imagens/MathLibras.png" alt="logo do site"/>Math Libras</a></h1>
-        <h2>Aulas de matemática básica</h2>
-        
-        <nav>
-            <ol>
-                <li><a href="#">AULAS</a></li>
-                <li><a href="#">ANIMAÇÕES</a></li>
-                <li><a href="#">LISTAS</a></li>
-                <li><a href="#">OBJETOS</a></li>
-            </ol>
-        </nav>
-    </header>
-    
-    <main>
         <svg width="640" height="360" id="container" >
-            <g id="fundo"><image href="imagens\fundo.png" width="140" height="250" x="250" y="50"/></g>
+            <g id="fundo"><image href="imagens\fundo.png" width="150" height="250" x="245" y="50"/></g>
             <g class="containerPec" id="0"><image href="imagens\p1.png" class="movel"/><image width="18" height="18" class="answer"/></g>
             <g class="containerPec" id="1"><image href="imagens\p2.png" class="movel"/><image width="18" height="18" class="answer"/></g>
             <g class="containerPec" id="2"><image href="imagens\p3.png" class="movel"/><image width="18" height="18" class="answer"/></g>
             <g class="containerPec" id="3"><image href="imagens\p4.png" class="movel"/><image width="18" height="18" class="answer"/></g>
             <g class="containerPec" id="4"><image href="imagens\p5.png" class="movel"/><image width="18" height="18" class="answer"/></g>
         </svg>
-        <input type="submit" value="confirmar" onclick="verificar()"/>
-    </main>
-    
-    <footer>
-        <div class="endereco">
-            <address>
-                <ol>
-                    <li><img src="imagens/pointer.png" alt="Endereço físico"> IFRN | Natal - Central</li></br>
-                    <li><img src="imagens/telefone.png" alt="Telefone"> (84) 9 8797 - 2102</li></br>
-                    <li><img src="imagens/email.png" alt="Email"> geraldo.felipe@ifrn.edu.br</li>
-                </ol>
-            </address>
-        </div>
-        
-        <div class="logo">
-            <h1><a href="http://napalmadamao.ifrn.edu.br/"><img src="imagens/logo.png" alt="logo do site"/>EDUCAÇÃO NA <br/>PALMA DA MÃO</a></h1>
-            <h2>Repositório de objetos de aprendizagem</h2>
-        </div>
-        
-        <div class="creditos">
-            <p>Prof.Geraldo Felipe e Prof. Luciano Nóbrega | IFRN/CNAT</p>
-            <p>Projeto Educação na Palma da Mão | IFRN-CNAT</p>
-            <p>Site em desenvolvimento | Setembro de 2019</p>
-        </div>
-    </footer>
+        <input class="confirmarBtn" type="submit" value="Confirmar" onclick="verificar()"/>
 </body>
 <script src="js/puzzle.js"></script>
 </html>
