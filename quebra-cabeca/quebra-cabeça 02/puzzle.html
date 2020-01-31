@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <title>Quebra-cabeça</title>
+    <link rel="icon" href="imagens/iconMathLibras.png">
+    <meta name="viewport">
+    <link rel="stylesheet" type="text/css" href="estilos/main.css"/>
+    <link rel="stylesheet" href="estilos/puzzle.css" />
+    <style>
+    </style>
+</head>
+<body>
+        <svg width="710" height="411" id="container" >
+            <g id="fundo"><image href="imagens\fundo.png" width="710" height="411" x="0" y="0"/></g>
+            <g class="containerPec" id="0"><image href="imagens\p1.png" class="movel"/><image width="18" height="18" class="answer"/></g>
+            <g class="containerPec" id="1"><image href="imagens\p2.png" class="movel"/><image width="18" height="18" class="answer"/></g>
+            <g class="containerPec" id="2"><image href="imagens\p3.png" class="movel"/><image width="18" height="18" class="answer"/></g>
+            <g class="containerPec" id="3"><image href="imagens\p4.png" class="movel"/><image width="18" height="18" class="answer"/></g>
+            <g class="containerPec" id="4"><image href="imagens\p5.png" class="movel"/><image width="18" height="18" class="answer"/></g>
+        </svg>
+        <input class="confirmarBtn" type="submit" value="Confirmar" onclick="verificar()"/>
+</body>
+<script src="js/puzzle.js"></script>
+</html>
