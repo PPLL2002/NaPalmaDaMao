@@ -1,9 +1,12 @@
+//VARIAVEIS
+var sobra = 0;
 var pecas = document.querySelectorAll('.movel');
 var answer = document.querySelectorAll('.answer');
+var confirmarBtn = document.querySelector('.confirmarBtn');
 
 // TAMANHO DAS PEÇAS 
-var tamW = [140, 140, 140, 140, 140]
-var tamH = [50, 50, 50, 50, 50]
+var tamW = [140, 140, 140, 140, 140, 140]
+var tamH = [50, 50, 50, 50, 50, 50]
 var pY = []
 
 function numeroAleatorios(){
@@ -26,6 +29,7 @@ for(var i=0; i< pecas.length; i++){
     pecas[i].setAttribute("onmousedown", "selecionarElemento(evt)");
 }
 
+
 var elementSelect = 0;
 var currentX = 0;
 var currentY = 0;
@@ -38,7 +42,7 @@ function selecionarElemento(evt){
     currentY = evt.clientY;
     currentPosX = parseFloat(elementSelect.getAttribute("x"));
     currentPosY = parseFloat(elementSelect.getAttribute("y"));
-    limparBordas();
+    limparCorrecao();
     elementSelect.setAttribute("onmousemove", "moverElemento(evt)");
 }
 
@@ -65,7 +69,7 @@ function deselecionarElemento(evt){
     }
 }
 
-function limparBordas(){
+function limparCorrecao(){
     var cPecas = document.getElementsByClassName('containerPec');
     for(var i = 0; i < pecas.length; i++){
         cPecas[i].childNodes[1].setAttribute("style", "display: none;");
@@ -109,11 +113,17 @@ function verificar(){
             cPecas[i].childNodes[1].setAttribute("style", "display:block;");
             cPecas[i].childNodes[1].setAttribute("href", "imagens/correct-symbol.png");
         }
-        else
+        else if(id <= (pecas.length - 1) - sobra)
         {
             cPecas[i].childNodes[1].setAttribute("style", "display:block;");
             cPecas[i].childNodes[1].setAttribute("href", "imagens/cancel-mark.png");
         }
     }
-    if(encaixadas == pecas.length){alert("CONGRATULATIONS");}
+    if(encaixadas == pecas.length - sobra){
+        confirmarBtn.value = 'Tente Novamente';
+        confirmarBtn.style.width = '120px';
+        confirmarBtn.style.backgroundColor = '#b1b1b1';
+        confirmarBtn.style.border = '2px solid red;'
+        confirmarBtn.setAttribute('onclick', 'location.reload()')
+    }
 }
