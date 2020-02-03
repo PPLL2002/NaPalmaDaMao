@@ -7,7 +7,7 @@ var confirmarBtn = document.querySelector('.confirmarBtn');
 // TAMANHO DAS PEÇAS 
 var tamW = [206, 206, 206, 206, 206]
 var tamH = [50, 50, 50, 50, 50]
-var pY = []
+var pY = [0,1,2,3,4]
 
 function numeroAleatorios(){
     while(pY.length < pecas.length){
@@ -15,7 +15,7 @@ function numeroAleatorios(){
         if(pY.indexOf(aleatorio) == -1) pY.push(aleatorio);
     }
 }
-numeroAleatorios();
+//numeroAleatorios();
 
 // DISTRIBUIÇÃO DAS PEÇAS NA TELA
 for(var i=0; i< pecas.length; i++){
@@ -26,7 +26,7 @@ for(var i=0; i< pecas.length; i++){
     pecas[i].setAttribute("height", tamH[i]);
     pecas[i].setAttribute("x", Math.floor((Math.random() * 30) + 25));
     pecas[i].setAttribute("y", 90 + (50 * pY[i]));
-    pecas[i].setAttribute("onmousedown", "selecionarElemento(evt)");
+    pecas[i].setAttribute("ontouchstart", "selecionarElemento(evt)");
 }
 
 
@@ -38,33 +38,33 @@ var currentPosY = 0;
 
 function selecionarElemento(evt){
     elementSelect = reordernar(evt);
-    currentX = evt.clientX;
-    currentY = evt.clientY;
+    currentX = evt.touches[0].clientX;
+    currentY = evt.touches[0].clientY;
     currentPosX = parseFloat(elementSelect.getAttribute("x"));
     currentPosY = parseFloat(elementSelect.getAttribute("y"));
     limparCorrecao();
-    elementSelect.setAttribute("onmousemove", "moverElemento(evt)");
+    elementSelect.setAttribute("ontouchmove", "moverElemento(evt)");
 }
 
 function moverElemento(evt){
-    var dx = evt.clientX - currentX;
-    var dy = evt.clientY - currentY;
+    var dx = evt.touches[0].clientX - currentX;
+    var dy = evt.touches[0].clientY - currentY;
     currentPosX = currentPosX + dx;
     currentPosY = currentPosY + dy;
     elementSelect.setAttribute("x", currentPosX);
     elementSelect.setAttribute("y", currentPosY);
-    currentX = evt.clientX;
-    currentY = evt.clientY;
-    elementSelect.setAttribute("onmouseout", "deselecionarElemento(evt)")
-    elementSelect.setAttribute("onmouseup", "deselecionarElemento(evt)")
+    currentX = evt.touches[0].clientX;
+    currentY = evt.touches[0].clientY;
+    elementSelect.setAttribute("ontouchend", "deselecionarElemento(evt)")
+    elementSelect.setAttribute("ontoucancel", "deselecionarElemento(evt)")
     unir();
 }
 
 function deselecionarElemento(evt){
     if(elementSelect != 0){
-        elementSelect.removeAttribute("onmousemove");
-        elementSelect.removeAttribute("onmouseout");
-        elementSelect.removeAttribute("onmouseup");
+        elementSelect.removeAttribute("ontouchmove");
+        elementSelect.removeAttribute("ontouchend");
+        elementSelect.removeAttribute("ontoucancel");
         elementSelect = 0;
     }
 }
