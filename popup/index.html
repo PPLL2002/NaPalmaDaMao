@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pop Up</title>
     <style>
+        p{
+            margin: 10em;
+        }
         /* Popup container - can be anything you want */
         .popup {
             position: relative;
@@ -62,22 +65,17 @@
     </style>
 </head>
 <body>
-    <h2>POP UP</h2>
-    <h2>POP UP</h2>
-    <h2>POP UP</h2>
-    <h2>POP UP</h2>
-    <h2>POP UP</h2>
-    <h2>POP UP</h2>
-    <h2>POP UP</h2>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA <span class="popup" onclick="myFunction(event)">Variavel<span class="popuptext" id="myPopup"> uma variável é um objeto (uma posição, frequentemente localizada na memória) capaz de reter e representar um valor ou expressão.</span></span> AAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAA <span class="popup" onclick="myFunction(event)">Variavel<span class="popuptext" id="myPopup"> uma variável é um objeto (uma posição, frequentemente localizada na memória) capaz de reter e representar um valor ou expressão.</span></span> AAAAAAAAAAAAAAAAAAAAAAA</p>
+
+        <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA <span class="popup" onclick="myFunction(event, 'variavel')">Variavel<span class="popuptext myPopup" > uma variável é um objeto (uma posição, frequentemente localizada na memória) capaz de reter e representar um valor ou expressão.</span></span> AAAAAAAAAAAAAAAAAAAAAAA</p>
+        
+        <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA <span class="popup" onclick="myFunction(event, 'varsadsiavel')">Variavel<span class="popuptext myPopup" > uma variável é um objeto (uma posição, frequentemente localizada na memória) capaz de reter e representar um valor ou expressão.</span></span> AAAAAAAAAAAAAAAAAAAAAAA</p>
+
     
     <script>
         // When the user clicks on div, open the popup
-        function myFunction(evt) {
-            var popup = document.getElementById("myPopup");
-            var pos = evt.target.offsetLeft;
-            popup.style.marginLeft = -15 - parseInt(pos) + 'px';
+        function myFunction(evt, word) {
+            var popup = document.querySelector(".myPopup");
+            var pos = evt.target.offsetTop;
             popup.classList.toggle("show");
         }
     </script>
