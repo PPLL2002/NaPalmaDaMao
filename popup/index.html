@@ -6,78 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pop Up</title>
     <style>
-        p{
-            margin: 10em;
-        }
-        /* Popup container - can be anything you want */
-        .popup {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
         
-        /* The actual popup */
-        .popup .popuptext {
-            visibility: hidden;
-            width: 320px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            padding: 8px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-        }
-        
-        /* Popup arrow */
-        .popup .popuptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-        
-        /* Toggle this class - hide and show the popup */
-        .popup .show {
-            visibility: visible;
-            -webkit-animation: fadeIn 1s;
-            animation: fadeIn 1s;
-        }
-        
-        /* Add animation (fade in the popup) */
-        @-webkit-keyframes fadeIn {
-            from {opacity: 0;} 
-            to {opacity: 1;}
-        }
-        
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity:1 ;}
-        }
     </style>
 </head>
 <body>
-
         <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA <span class="popup" onclick="myFunction(event, 'variavel')">Variavel<span class="popuptext myPopup" > uma variável é um objeto (uma posição, frequentemente localizada na memória) capaz de reter e representar um valor ou expressão.</span></span> AAAAAAAAAAAAAAAAAAAAAAA</p>
-        
-        <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA <span class="popup" onclick="myFunction(event, 'varsadsiavel')">Variavel<span class="popuptext myPopup" > uma variável é um objeto (uma posição, frequentemente localizada na memória) capaz de reter e representar um valor ou expressão.</span></span> AAAAAAAAAAAAAAAAAAAAAAA</p>
-
-    
     <script>
-        // When the user clicks on div, open the popup
-        function myFunction(evt, word) {
-            var popup = document.querySelector(".myPopup");
-            var pos = evt.target.offsetTop;
-            popup.classList.toggle("show");
-        }
     </script>
 </body>
 </html>
