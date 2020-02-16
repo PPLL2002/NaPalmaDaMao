@@ -6,36 +6,103 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>NPM</title>
 	<style>
-		.menuML{
+		
+		.sideMenu {
 			list-style-type: none;
-			display: inline-block;
 		}
-		.menuML .opMenu{
-			background-color: #086d99;
-			margin: 1em 0;
-			padding: 0.5em;
-			width: 300px;
-			border-radius: 2em;
+		.sideMenu li{
+			margin: 1em;
 			text-align: center;
-			color: white;
 		}
-		.menu-container li{
+		.accordion {
+			border-radius: 2em;
+			display: block;
+			background-color: #0b6d99;
+			color: white;
+			cursor: pointer;
+			padding: 10px;
+			width: 20em;
+			text-align: center;
+			border: none;
+			outline: none;
+			transition: 0.4s;
+		}
+		
+		.active, .accordion:hover {
+			background-color: #1d88b9;
+		}
+		
+		.accordion:after {
+			content: '\02795'; /* Unicode character for "plus" sign (+) */
+			font-size: 13px;
+			color: white;
+			float: right;
+			margin-left: 5px;
+		}
+		
+		.active:after {
+			content: "\2796"; /* Unicode character for "minus" sign (-) */
+		}
+		
+		.menu-itens {
+			width: 20em;
+			padding: 0 18px;
 			background-color: white;
-			color: black;
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease-out;
+		}
+		.menu-itens a{
+			color: #267ea4;
+			display: block;
+			margin: 10px;
 		}
 	</style>
 </head>
 <body>
-	<ol class="menuML">
-		<li class="opMenu">AULAS
-			<ol class="menu-container">
-				<li>Link 1</li>
-				<li>Link 2</li>
-				<li>Link 3</li>
-			</ol>
+	<ol class="sideMenu">
+		<li>
+			<a class="accordion">AULAS</a>
+			<div class="menu-itens">
+				<a href="#">Frações - Aula 1</a>
+				<a href="#">Frações - Aula 2</a>
+				<a href="#">Frações - Aula 3</a>
+				<a href="#">Frações - Aula 4</a>
+			</div>
 		</li>
-		<li class="opMenu">EXERCÍCIOS</li>
-		<li class="opMenu">VÍDEO-AULAS</li>
+		<li>
+			<a class="accordion">EXERCÍCIOS</a>
+			<div class="menu-itens">
+				<a href="#">Frações - Exercício 1</a>
+				<a href="#">Frações - Exercício 2</a>
+				<a href="#">Frações - Exercício 3</a>
+			</div>
+		</li>
+		<li>
+			<a class="accordion">VÍDEO-AULAS</a>
+			<div class="menu-itens">
+				<a href="#">Frações - Aula 1</a>
+				<a href="#">Frações - Aula 2</a>
+				<a href="#">Frações - Aula 3</a>
+				<a href="#">Frações - Aula 4</a>
+			</div>
+		</li>
 	</ol>
 </body>
+<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+	
+	for (i = 0; i < acc.length; i++) {
+		acc[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+			var panel = this.nextElementSibling;
+			if (panel.style.maxHeight) {
+				panel.style.maxHeight = null;
+			} else {
+				panel.style.maxHeight = panel.scrollHeight + "px";
+			}
+		});
+	}
+</script>
 </html>
