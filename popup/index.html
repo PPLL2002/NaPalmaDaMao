@@ -6,12 +6,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pop Up</title>
     <style>
+        .popup{
+            cursor: pointer;
+            color: #0b6d99;
+            font-weight: 700;
+        }
+        #popupText{
+            cursor: pointer;
+            position: absolute;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            z-index: 1;
+        }
         
+        #popupText::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 1em;
+            margin-left: -3px;
+            border-width: 3px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
     </style>
 </head>
 <body>
-        <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA <span class="popup" onclick="myFunction(event, 'variavel')">Variavel<span class="popuptext myPopup" > uma variável é um objeto (uma posição, frequentemente localizada na memória) capaz de reter e representar um valor ou expressão.</span></span> AAAAAAAAAAAAAAAAAAAAAAA</p>
+    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus voluptates harum pariatur. Nostrum laboriosam enim, a voluptatibus, accusantium ad debitis dolorem tempora excepturi, fugiat odit non suscipit perferendis? Minus, quibusdam.<span class="popup" onclick="popUp(event, 'DIGITE AQUI O TEXTO QUE DESEJAR')"> DETERMINE A EXPRESSÃO CLICAVEL</span></p>
     <script>
+        function popUp(evt, texto){
+            if(document.getElementById('popupText') != null){
+                var node = document.getElementById("popupText");
+                node.parentNode.removeChild(node);
+            }
+            var conteudo = document.createElement("SPAN");
+            conteudo.innerHTML = texto;
+            conteudo.setAttribute('id', 'popupText');
+            conteudo.style.left = evt.target.offsetLeft + 'px';
+            conteudo.addEventListener('click', function(){
+                var node = document.getElementById("popupText");
+                if (node.parentNode) {
+                    node.parentNode.removeChild(node);
+                }
+            })
+            document.body.appendChild(conteudo);
+            conteudo.style.top = (evt.target.offsetTop - conteudo.offsetHeight) + 'px';
+        }
     </script>
 </body>
 </html>
