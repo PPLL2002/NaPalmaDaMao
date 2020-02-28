@@ -21,7 +21,6 @@
             padding: 8px;
             z-index: 1;
         }
-        
         #popupText::after {
             content: "";
             position: absolute;
@@ -35,26 +34,33 @@
     </style>
 </head>
 <body>
-    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus voluptates harum pariatur. Nostrum laboriosam enim, a voluptatibus, accusantium ad debitis dolorem tempora excepturi, fugiat odit non suscipit perferendis? Minus, quibusdam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus voluptates harum pariatur. Nostrum laboriosam enim, a voluptatibus, accusantium ad debitis dolorem tempora excepturi, fugiat odit non suscipit perferendis? Minus, quibusdam.<span class="popup" onclick="popUp(event, 'DIGITE AQUI O TEXTO QUE DESEJAR')"> DETERMINE A EXPRESSÃO CLICAVEL</span></p>
+    
+    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus voluptates harum pariatur. Nostrum laboriosam enim, a voluptatibus, accusantium ad debitis dolorem tempora excepturi, fugiat odit non suscipit perferendis? Minus, quibusdam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus voluptates harum pariatur. Nostrum laboriosam enim, a voluptatibus, accusantium ad debitis dolorem tempora excepturi, fugiat odit non suscipit perferendis? Minus, quibusdam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus voluptates harum pariatur. Nostrum laboriosam enim, a voluptatibus, accusantium ad debitis dolorem tempora excepturi, fugiat odit non suscipit perferendis? Minus, quibusdam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus voluptates harum pariatur. Nostrum laboriosam enim, a voluptatibus, accusantium ad debitis dolorem tempora excepturi, fugiat odit non suscipit perferendis? Minus, quibusdam.<span class="popup" onclick="popUp(event, 'DIGITE AQUI O TEXTO QUE DESEJAR')"> DETERMINE A EXPRESSÃO CLICAVEL</span></p>
+
     <script>
         function popUp(evt, texto){
+            //VERIFICAR SE TEM ALGUM POPUP ABERTO, CASO TENHA FECHA O POPUP
             if(document.getElementById('popupText') != null){
-                var node = document.getElementById("popupText");
-                node.parentNode.removeChild(node);
+                closePopUp();
             }
+            //CRIA A DIV DE POPUP
             var conteudo = document.createElement("SPAN");
             conteudo.innerHTML = texto;
             conteudo.setAttribute('id', 'popupText');
             conteudo.style.left = evt.target.offsetLeft + 'px';
-            conteudo.addEventListener('click', function(){
-                var node = document.getElementById("popupText");
-                if (node.parentNode) {
-                    node.parentNode.removeChild(node);
-                }
-            })
+            //ADICIONA O EVENTO DE CLICK A DIV POPUPTEXT
+            conteudo.setAttribute('onclick', 'closePopUp()');
             document.body.appendChild(conteudo);
             conteudo.style.top = (evt.target.offsetTop - conteudo.offsetHeight) + 'px';
         }
+        
+        function closePopUp(){
+            var node = document.getElementById("popupText");
+            if (node.parentNode) {
+                node.parentNode.removeChild(node);
+            }
+        }
+        
     </script>
 </body>
 </html>
