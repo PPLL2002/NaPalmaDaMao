@@ -6,7 +6,7 @@
     <title>Carrinho</title>
 </head>
 <body>
-    <canvas style="border: 1px solid black;" id="myCanvas" width="640" height="360"></canvas>
+    <canvas style="border: 1px solid black" id="myCanvas" width="640" height="360"></canvas>
 </body>
 <script src="PSlibrary20192.js"></script>
 <script>
@@ -98,14 +98,12 @@
         ctx.lineWidth = 1;
         ctx.fillStyle = colorDetail;
         ctx.fill();
-        //
         // MAÇANETA FRENTE
         ctx.beginPath();
         ctx.rect(x+51, y-23, 8, 2);
         ctx.lineWidth = 1;
         ctx.fillStyle = colorDetail;
         ctx.fill();
-        //
         // DETALHE FRENTE E TRAS
         rectangleRound(x - 3, y - 10, 10, 2, 1, 1, colorDetail, colorDetail);
         rectangleRound(x + 102, y - 10, 12, 2, 1, 1, colorDetail, colorDetail);
@@ -114,7 +112,120 @@
         //
         ctx.restore();
     }
-    carModel(100, 100, '#00d2c9', '#00a0a3', 1)
-
+    //carModel(100, 100, '#00d2c9', '#00a0a3', 1)
+    
+    function carModel2(x, y, color1, color2, color3, scale){
+        var x; y; color1; color2; scale;	
+        ctx.save();
+        ctx.translate(x,y);
+        ctx.scale(scale,scale);
+        ctx.translate(-x,-y);
+        // CARCAÇA
+        ctx.beginPath();	
+        ctx.moveTo(x, y-30);
+        ctx.lineTo(x, y-45);
+        ctx.arc(x+10, y-45, 10, Math.PI, 3/2*Math.PI, false);
+        ctx.lineTo(x + 90, y-55);
+        ctx.arc(x+95, y-50, 5, 3/2*Math.PI, -0.5, false);
+        ctx.arc(x + 100, y-30, 10, Math.PI*1.8,Math.PI, false);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = color1;
+        ctx.fill();
+        //ctx.stroke();
+        // CARCAÇA 2
+        ctx.beginPath();	
+        ctx.moveTo(x + 110, y - 30);
+        ctx.lineTo(x + 110, y - 10);
+        ctx.arc(x + 100, y - 13, 10, Math.PI*2,Math.PI*2.3, false);
+        ctx.lineTo(x, y - 5);
+        ctx.lineTo(x, y - 30);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = color2;
+        ctx.fill();
+        //PARACHOQUE
+        ctx.beginPath();	
+        ctx.moveTo(x+1, y);
+        ctx.lineTo(x+108, y);
+        ctx.arc(x + 108, y - 3, 3, Math.PI/2, 3/2*Math.PI, true);
+        ctx.lineTo(x+1, y-6);
+        ctx.arc(x+1, y - 3, 3, Math.PI*3/2, Math.PI/2, true);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = color3;
+        ctx.fill();
+        // RODA 1
+        ctx.beginPath();
+        ctx.arc(x + 20, y, 11, 0, 2*Math.PI, false);
+        ctx.lineWidth = 4;
+        ctx.fillStyle = '#6c6f6e';
+        ctx.fill();
+        ctx.strokeStyle = '#452837';
+        ctx.stroke();
+        // CALOTA 1
+        ctx.beginPath();
+        ctx.arc(x + 20, y, 6, 0, 2*Math.PI, false);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        // RODA 2
+        ctx.beginPath();
+        ctx.arc(x + 88, y, 11, 0, 2*Math.PI, false);
+        ctx.lineWidth = 4;
+        ctx.fillStyle = '#6c6f6e';
+        ctx.fill();
+        ctx.strokeStyle = '#452837';
+        ctx.stroke();
+        // CALOTA2
+        ctx.beginPath();
+        ctx.arc(x + 88, y, 6, 0, 2*Math.PI, false);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        // VIDRO TRAS
+        ctx.beginPath();
+        ctx.moveTo(x+16, y - 35);
+        ctx.lineTo(x+16, y-45);
+        ctx.arc(x + 21, y-45, 5, Math.PI, 3/2*Math.PI, false);
+        ctx.lineTo(x+36, y-50);
+        ctx.lineTo(x+36, y-35);
+        ctx.lineTo(x+16, y - 35);
+        ctx.lineWidth = 1;
+        ctx.fillStyle = '#6d6d6d';
+        ctx.fill();
+        // VIDRO MEIO
+        ctx.beginPath();
+        ctx.rect(x+40, y-50, 26, 15);
+        ctx.lineWidth = 1;
+        ctx.fillStyle = '#6d6d6d';
+        ctx.fill();
+        // VIDRO MEIO 2
+        ctx.beginPath();
+        ctx.rect(x+70, y-50, 20, 15);
+        ctx.lineWidth = 1;
+        ctx.fillStyle = '#6d6d6d';
+        ctx.fill();
+        // VIDRO FRENTE
+        ctx.beginPath();
+        ctx.moveTo(x+94, y - 35);
+        ctx.lineTo(x+94, y - 50);
+        ctx.lineTo(x+94, y - 50);
+        ctx.arc(x+94, y - 44, 6, Math.PI*3/2, Math.PI*3.6/2, false);
+        ctx.lineTo(x+104, y - 35);
+        ctx.lineTo(x+90, y - 35);
+        ctx.lineWidth = 1;
+        ctx.fillStyle = '#6d6d6d';
+        ctx.fill();
+        // MAÇANETA FRENTE
+        ctx.beginPath();
+        ctx.rect(x+53, y-26, 8, 2);
+        ctx.lineWidth = 1;
+        ctx.fillStyle = color1;
+        ctx.fill();
+        ctx.restore();
+        rectangleRound(x - 2, y - 6, 3, 6, 2, 1, '#d23d09', '#d23d09');
+        rectangleRound(x + 107, y - 18, 5, 8, 2, 1, '#ffce37', '#ffce37');
+    }
+    carModel2(100, 100, '#e2d9c7', '#1ed9e7', '#1fbcc7', 1)
+    
+    
 </script>
 </html>
