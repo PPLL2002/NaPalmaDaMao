@@ -10,6 +10,7 @@
 </body>
 <script src="PSlibrary20192.js"></script>
 <script>
+    //CARRO NORMAL
     function carModel(x, y, colorCar, colorDetail, scale){
         var x; y; colorCar; colorDetail; scale;	
         ctx.save();
@@ -112,8 +113,9 @@
         //
         ctx.restore();
     }
-    //carModel(100, 100, '#00d2c9', '#00a0a3', 1)
+    carModel(100, 100, '#00d2c9', '#00a0a3', 1)
     
+    //KOMBI
     function carModel2(x, y, color1, color2, color3, scale){
         var x; y; color1; color2; scale;	
         ctx.save();
@@ -224,7 +226,7 @@
         rectangleRound(x - 2, y - 6, 3, 6, 2, 1, '#d23d09', '#d23d09');
         rectangleRound(x + 107, y - 18, 5, 8, 2, 1, '#ffce37', '#ffce37');
     }
-    carModel2(100, 100, '#e2d9c7', '#1ed9e7', '#1fbcc7', 1)
+    carModel2(250, 100, '#e2d9c7', '#1ed9e7', '#1fbcc7', 1)
     
     
 </script>
