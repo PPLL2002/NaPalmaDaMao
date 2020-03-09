@@ -113,7 +113,7 @@
         //
         ctx.restore();
     }
-    carModel(100, 100, '#00d2c9', '#00a0a3', 1)
+    //carModel(100, 100, '#00d2c9', '#00a0a3', 1)
     
     //KOMBI
     function carModel2(x, y, color1, color2, color3, scale){
@@ -226,7 +226,43 @@
         rectangleRound(x - 2, y - 6, 3, 6, 2, 1, '#d23d09', '#d23d09');
         rectangleRound(x + 107, y - 18, 5, 8, 2, 1, '#ffce37', '#ffce37');
     }
-    carModel2(250, 100, '#e2d9c7', '#1ed9e7', '#1fbcc7', 1)
+    //carModel2(250, 100, '#e2d9c7', '#1ed9e7', '#1fbcc7', 1)
+    
+    //KOMBI
+    function carModel3(x, y, color1, color2, color3, scale){
+        var x; y; color1; color2; scale;	
+        ctx.save();
+        ctx.translate(x,y);
+        ctx.scale(scale,scale);
+        ctx.translate(-x,-y);
+        // CARCAÇA
+        ctx.beginPath();	
+        ctx.moveTo(x+137, y);
+        ctx.lineTo(x+137, y-45);
+        ctx.arc(x+142, y-50, 5, Math.PI, 3/2*Math.PI, false);
+        ctx.lineTo(x + 167, y-55);
+        ctx.arc(x+172, y-50, 5, 3/2*Math.PI, -0.5, false);
+        ctx.arc(x + 177, y-30, 10, Math.PI*1.8,0, false);
+        ctx.arc(x + 187, y-19, 13, Math.PI*1.4, 0, false);
+        ctx.lineTo(x + 200, y);
+        ctx.lineTo(x, y);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = color1;
+        ctx.fill();
+        //ctx.stroke();
+        //PARACHOQUE
+        ctx.beginPath();	
+        ctx.moveTo(x, y);
+        ctx.lineTo(x+200, y);
+        ctx.arc(x + 200, y - 3, 3, Math.PI/2, 3/2*Math.PI, true);
+        ctx.lineTo(x, y-6);
+        ctx.arc(x, y - 3, 3, Math.PI*3/2, Math.PI/2, true);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = color3;
+        ctx.fill();
+        ctx.restore();
+    }
+    carModel3(250, 100, '#e2d9c7', '#1ed9e7', '#1fbcc7', 1)
     
     
 </script>
