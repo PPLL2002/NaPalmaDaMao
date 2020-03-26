@@ -236,8 +236,7 @@
         ctx.scale(scale,scale);
         ctx.translate(-x,-y);
         if(width < 0) width = 0;
-        if(width > 2) width = 2;
-        width *= 100;
+        if(width > 200) width = 200;
         // CARCAÇA
         ctx.beginPath();	
         ctx.moveTo(x+137 + width, y-1);
@@ -262,7 +261,13 @@
         ctx.lineWidth = 1.5;
         ctx.fillStyle = '#3c4144';
         ctx.fill();
-        rectangleRound(x + 1, y - 7, width+130, 10, 2, 1, '#3b3f40', '#3b3f40');
+        var det;
+        if(width < 180) det = x + 90 + width;
+        else det = x + width + 20;
+        rectangleRound(x + 1, y - 3, width+130, 10, 1, 1, '#3b3f40', '#3b3f40');
+        rectangleRound(det, y + 5, 40, 10, 0, 0, '#b3b3b3', '#b3b3b3');
+        rectangleRound(det, y + 5, 40, 6, 0, 0, '#969696', '#969696');
+        rectangleRound(det, y + 5, 40, 3, 0, 0, '#7f7f7f', '#7f7f7f');
         if(carga){
             //CARGA
             ctx.beginPath();	
@@ -296,7 +301,8 @@
         }
         roda(x + 25, y)
         if(width >= 100) roda(x + 55, y)
-        if(width == 200) {roda(x + 150, y); roda(x + 180, y); roda(x + 310, y); roda(x + 280, y)}
+        if(width >= 130) {roda(x + width - 30, y); roda(x + width, y);}
+        if(width >= 180) {roda(x + 80 + width, y); roda(x + width + 110, y)}
         roda(x + 160 + width, y)
         // VIDRO FRENTE
         ctx.beginPath();
@@ -360,7 +366,7 @@
         }
         ctx.restore();
     }
-    carModel3(100, 300, 2, '#e2d9c7', '#1ed9e7', '#1fbcc7', '#cac2b2', 1, false)
+    carModel3(100, 300, 0, '#e2d9c7', '#1ed9e7', '#1fbcc7', '#cac2b2', 1, true)
     
     
 </script>
