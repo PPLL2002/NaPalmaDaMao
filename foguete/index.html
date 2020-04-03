@@ -3,370 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho</title>
+    <title>Foguete</title>
 </head>
 <body>
     <canvas style="border: 1px solid black" id="myCanvas" width="640" height="360"></canvas>
+    <button onclick="ligar()">LIGAR</button>
 </body>
 <script src="PSlibrary20192.js"></script>
 <script>
-    //CARRO NORMAL
-    function carModel(x, y, colorCar, colorDetail, scale){
-        var x; y; colorCar; colorDetail; scale;	
+    var pesactive = false;
+    var px = 20;
+    var py = 40;
+    //FOGUETE
+    function rocket(x, y, color1, color2, scale, pesx, pesy){
+        var x; y; color1; color2; scale;	
         ctx.save();
         ctx.translate(x,y);
         ctx.scale(scale,scale);
         ctx.translate(-x,-y);
-        // CARCAÇA
+        //PÉS FOGUETE
+        rectangle(x + pesx - 25, y - 28 - pesy, 10, 50, 1, 30, '#909090', '#909090');
+        rectangle(x + pesx - 25, y - 28 - pesy, 5, 50, 1, 30, '#afafaf', '#afafaf');
+        rectangleRound(x + pesx - 52, y + 22 - pesy, 15, 8, 4, 1, '#afafaf', '#afafaf');
+        rectangle(x - pesx + 15, y - 25 - pesy, 10, 50, 1, -30, '#909090', '#909090');
+        rectangle(x - pesx + 20, y - 27 - pesy, 5, 50, 1, -30, '#afafaf', '#afafaf');
+        rectangleRound(x - pesx + 37, y + 22 - pesy, 15, 8, 4, 1, '#afafaf', '#afafaf');
+        //ASA ESQUERDA
         ctx.beginPath();	
-        ctx.moveTo(x+5, y-1);
-        ctx.arc(x+5, y - 8, 6, Math.PI/2, Math.PI*2.7/2, false);
-        ctx.lineTo(x, y-29);
-        ctx.lineTo(x + 18, y-27);
-        ctx.lineTo(x + 27, y-45);
-        ctx.lineTo(x + 65, y-45);
-        ctx.arc(x + 65, y-40, 5, Math.PI*1.5, -0.5, false);
-        ctx.lineTo(x + 76, y-25);
-        ctx.lineTo(x + 108, y-25);
-        ctx.lineTo(x + 108, y-15);
-        ctx.arc(x + 108, y-8, 5, Math.PI*3/2, Math.PI/2, false);
-        ctx.lineTo(x+5, y-1);
+        ctx.moveTo(x - 27, y - 89);
+        ctx.quadraticCurveTo(x - 40, y - 59, x - 60, y - 49);
+        ctx.quadraticCurveTo(x - 70, y - 49, x - 70, y - 19);
+        ctx.lineTo(x - 30, y - 19);
         ctx.lineWidth = 1.5;
-        ctx.fillStyle = colorCar;
+        ctx.fillStyle = '#d9d9d9';
         ctx.fill();
-        //	PARACHOQUE
+        //DETALHE ASA ESQUERDA
+        ctx.beginPath();	
+        ctx.moveTo(x - 27, y - 89);
+        ctx.quadraticCurveTo(x - 40, y - 59, x - 60, y - 49);
+        ctx.quadraticCurveTo(x - 70, y - 49, x - 70, y - 19);
+        ctx.lineTo(x - 65, y - 19);
+        ctx.quadraticCurveTo(x - 65, y - 39, x - 56, y - 45);
+        ctx.quadraticCurveTo(x - 35, y - 54, x - 27, y - 79);
+        ctx.lineTo(x - 27, y - 89);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#2c3fa4';
+        ctx.fill();
+        //ASA DIRETA
+        ctx.beginPath();	
+        ctx.moveTo(x + 27, y - 89);
+        ctx.quadraticCurveTo(x + 40, y - 59, x + 60, y - 49);
+        ctx.quadraticCurveTo(x + 70, y - 49, x + 70, y - 19);
+        ctx.lineTo(x + 30, y - 19);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#d9d9d9';
+        ctx.fill();
+        //DETALHE ASA ESQUERDA
+        ctx.beginPath();	
+        ctx.moveTo(x + 27, y - 89);
+        ctx.quadraticCurveTo(x + 40, y - 59, x + 60, y - 49);
+        ctx.quadraticCurveTo(x + 70, y - 49, x + 70, y - 19);
+        ctx.lineTo(x + 65, y - 19);
+        ctx.quadraticCurveTo(x + 65, y - 39, x + 56, y - 45);
+        ctx.quadraticCurveTo(x + 35, y - 54, x + 27, y - 79);
+        ctx.lineTo(x + 27, y - 89);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#2c3fa4';
+        ctx.fill();
+        //CARCAÇA
+        ctx.beginPath();	
+        ctx.moveTo(x, y - 19);
+        ctx.lineTo(x - 30, y - 19);
+        ctx.lineTo(x - 25, y - 129);
+        ctx.quadraticCurveTo(x - 15, y - 169, x, y - 169);
+        ctx.quadraticCurveTo(x + 15, y - 169, x + 25, y - 129);
+        ctx.lineTo(x + 30, y - 19);
+        ctx.lineTo(x, y - 19);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#e7e7e7';
+        ctx.fill();
+        //TURBINA MEIO
+        ctx.beginPath();	
+        ctx.moveTo(x - 25, y);
+        ctx.arc(x, y - 10, 25, Math.PI, 2*Math.PI, false);
+        ctx.lineTo(x + 25, y);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#d7d7d7';
+        ctx.fill();
+        //DETALHE TURBINA MEIO
         ctx.beginPath();	
         ctx.moveTo(x, y);
-        ctx.lineTo(x+110, y);
-        ctx.arc(x + 110, y - 3, 3, Math.PI/2, 3/2*Math.PI, true);
-        ctx.lineTo(x, y-6);
-        ctx.arc(x, y - 3, 3, Math.PI*3/2, Math.PI/2, true);
+        ctx.rect(x - 24, y - 15, 48, 5);
         ctx.lineWidth = 1.5;
-        ctx.fillStyle = colorDetail;
+        ctx.fillStyle = '#c6c6c6';
         ctx.fill();
-        // RODA 1
-        ctx.beginPath();
-        ctx.arc(x + 18, y, 11, 0, 2*Math.PI, false);
-        ctx.lineWidth = 4;
-        ctx.fillStyle = '#6c6f6e';
-        ctx.fill();
-        ctx.strokeStyle = '#452837';
-        ctx.stroke();
-        // CALOTA 1
-        ctx.beginPath();
-        ctx.arc(x + 18, y, 6, 0, 2*Math.PI, false);
+        //DETALHE TURBINA MEIO
+        ctx.beginPath();	
+        ctx.moveTo(x, y);
+        ctx.rect(x - 25, y - 10, 50, 5);
         ctx.lineWidth = 1.5;
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#bdbdbd';
         ctx.fill();
-        // RODA 2
-        ctx.beginPath();
-        ctx.arc(x + 91, y, 11, 0, 2*Math.PI, false);
-        ctx.lineWidth = 4;
-        ctx.fillStyle = '#6c6f6e';
-        ctx.fill();
-        ctx.strokeStyle = '#452837';
-        ctx.stroke();
-        // CALOTA2
-        ctx.beginPath();
-        ctx.arc(x + 91, y, 6, 0, 2*Math.PI, false);
+        //DETALHE TURBINA MEIO
+        ctx.beginPath();	
+        ctx.moveTo(x, y);
+        ctx.rect(x - 25, y - 5, 50, 5);
         ctx.lineWidth = 1.5;
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#1c2477';
         ctx.fill();
-        // VIDRO TRAS
-        ctx.beginPath();
-        ctx.moveTo(x+24, y - 27);
-        ctx.lineTo(x+30, y - 41);
-        ctx.lineTo(x+45, y - 41);
-        ctx.lineTo(x+45, y - 27);
-        ctx.lineTo(x+24, y - 27);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = '#6d6d6d';
+        //TURBINA ESQUERDA
+        ctx.beginPath();	
+        ctx.moveTo(x - 53, y - 19);
+        ctx.arc(x - 53, y - 19, 14, 0, Math.PI, false);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#bfbfbf';
         ctx.fill();
-        // VIDRO FRENTE
-        ctx.beginPath();
-        ctx.moveTo(x+50, y - 27);
-        ctx.lineTo(x+50, y - 41);
-        ctx.lineTo(x+60, y - 41);
-        ctx.arc(x+62, y - 35, 6, Math.PI*3/2, Math.PI*3.6/2, false);
-        ctx.lineTo(x+70, y - 27);
-        ctx.lineTo(x+50, y - 27);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = '#6d6d6d';
+        //DETALHE TURBINA ESQUERDA
+        ctx.beginPath();	
+        ctx.moveTo(x - 46, y - 6);
+        ctx.lineTo(x - 60, y - 6);
+        ctx.quadraticCurveTo(x - 63, y - 2, x - 63, y);
+        ctx.lineTo(x - 46, y);
+        ctx.moveTo(x - 46, y - 6);
+        ctx.quadraticCurveTo(x - 43, y - 2, x - 43, y);
+        ctx.lineTo(x - 46, y);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#1c2276';
         ctx.fill();
-        // MAÇANETA TRAS
-        ctx.beginPath();
-        ctx.rect(x+32, y-23, 8, 2);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = colorDetail;
+        //TURBINA DIREITA
+        ctx.beginPath();	
+        ctx.moveTo(x + 53, y - 19);
+        ctx.arc(x + 53, y - 19, 14, 0, Math.PI, false);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#bfbfbf';
         ctx.fill();
-        // MAÇANETA FRENTE
-        ctx.beginPath();
-        ctx.rect(x+51, y-23, 8, 2);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = colorDetail;
+        //DETALHE TURBINA DIREITA
+        ctx.beginPath();	
+        ctx.moveTo(x + 46, y - 6);
+        ctx.lineTo(x + 60, y - 6);
+        ctx.quadraticCurveTo(x + 63, y - 2, x + 63, y);
+        ctx.lineTo(x + 46, y);
+        ctx.moveTo(x + 46, y - 6);
+        ctx.quadraticCurveTo(x + 43, y - 2, x + 43, y);
+        ctx.lineTo(x + 46, y);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#1c2276';
         ctx.fill();
-        // DETALHE FRENTE E TRAS
-        rectangleRound(x - 3, y - 10, 10, 2, 1, 1, colorDetail, colorDetail);
-        rectangleRound(x + 102, y - 10, 12, 2, 1, 1, colorDetail, colorDetail);
-        rectangleRound(x - 1, y - 16.5, 4, 7, 2, 1, '#d23d09', '#d23d09');
-        rectangleRound(x + 103.5, y - 14.5, 5, 9, 2, 1, '#ffce37', '#ffce37');
-        //
+        //JANELA
+        ctx.beginPath();	
+        ctx.moveTo(x, y - 149);
+        ctx.quadraticCurveTo(x - 15, y - 149, x - 17, y - 129);
+        ctx.lineTo(x - 11, y - 134);
+        ctx.quadraticCurveTo(x - 9, y - 144, x , y - 144);
+        ctx.lineTo(x, y - 149);
+        ctx.quadraticCurveTo(x + 15, y - 149, x + 17, y - 129);
+        ctx.lineTo(x + 11, y - 134);
+        ctx.quadraticCurveTo(x + 9, y - 144, x, y - 144);
+        ctx.lineTo(x, y - 149);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#2c3ea1';
+        ctx.fill();
+        //DETALHE TURBINA ESQUERDA
+        ctx.beginPath();	
+        ctx.moveTo(x - 53, y + 1);
+        ctx.rect(x - 66, y - 19, 26, 5);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#cbcbcb';
+        ctx.fill();
+        //DETALHE TURBINA DIREITA
+        ctx.beginPath();	
+        ctx.moveTo(x + 40, y + 1);
+        ctx.rect(x + 40, y - 19, 26, 5);
+        ctx.lineWidth = 1.5;
+        ctx.fillStyle = '#cbcbcb';
+        ctx.fill();
+        
         ctx.restore();
     }
-    carModel(100, 100, '#00d2c9', '#00a0a3', 1)
     
-    //KOMBI
-    function carModel2(x, y, color1, color2, color3, scale){
-        var x; y; color1; color2; scale;	
-        ctx.save();
-        ctx.translate(x,y);
-        ctx.scale(scale,scale);
-        ctx.translate(-x,-y);
-        // CARCAÇA
-        ctx.beginPath();	
-        ctx.moveTo(x, y-30);
-        ctx.lineTo(x, y-45);
-        ctx.arc(x+10, y-45, 10, Math.PI, 3/2*Math.PI, false);
-        ctx.lineTo(x + 90, y-55);
-        ctx.arc(x+95, y-50, 5, 3/2*Math.PI, -0.5, false);
-        ctx.arc(x + 100, y-30, 10, Math.PI*1.8,Math.PI, false);
-        ctx.lineWidth = 1.5;
-        ctx.fillStyle = color1;
-        ctx.fill();
-        //ctx.stroke();
-        // CARCAÇA 2
-        ctx.beginPath();	
-        ctx.moveTo(x + 110, y - 30);
-        ctx.lineTo(x + 110, y - 10);
-        ctx.arc(x + 100, y - 13, 10, Math.PI*2,Math.PI*2.3, false);
-        ctx.lineTo(x, y - 5);
-        ctx.lineTo(x, y - 30);
-        ctx.lineWidth = 1.5;
-        ctx.fillStyle = color2;
-        ctx.fill();
-        //PARACHOQUE
-        ctx.beginPath();	
-        ctx.moveTo(x+1, y);
-        ctx.lineTo(x+108, y);
-        ctx.arc(x + 108, y - 3, 3, Math.PI/2, 3/2*Math.PI, true);
-        ctx.lineTo(x+1, y-6);
-        ctx.arc(x+1, y - 3, 3, Math.PI*3/2, Math.PI/2, true);
-        ctx.lineWidth = 1.5;
-        ctx.fillStyle = color3;
-        ctx.fill();
-        // RODA 1
-        ctx.beginPath();
-        ctx.arc(x + 20, y, 11, 0, 2*Math.PI, false);
-        ctx.lineWidth = 4;
-        ctx.fillStyle = '#6c6f6e';
-        ctx.fill();
-        ctx.strokeStyle = '#452837';
-        ctx.stroke();
-        // CALOTA 1
-        ctx.beginPath();
-        ctx.arc(x + 20, y, 6, 0, 2*Math.PI, false);
-        ctx.lineWidth = 1.5;
-        ctx.fillStyle = '#ffffff';
-        ctx.fill();
-        // RODA 2
-        ctx.beginPath();
-        ctx.arc(x + 88, y, 11, 0, 2*Math.PI, false);
-        ctx.lineWidth = 4;
-        ctx.fillStyle = '#6c6f6e';
-        ctx.fill();
-        ctx.strokeStyle = '#452837';
-        ctx.stroke();
-        // CALOTA2
-        ctx.beginPath();
-        ctx.arc(x + 88, y, 6, 0, 2*Math.PI, false);
-        ctx.lineWidth = 1.5;
-        ctx.fillStyle = '#ffffff';
-        ctx.fill();
-        // VIDRO TRAS
-        ctx.beginPath();
-        ctx.moveTo(x+16, y - 35);
-        ctx.lineTo(x+16, y-45);
-        ctx.arc(x + 21, y-45, 5, Math.PI, 3/2*Math.PI, false);
-        ctx.lineTo(x+36, y-50);
-        ctx.lineTo(x+36, y-35);
-        ctx.lineTo(x+16, y - 35);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = '#6d6d6d';
-        ctx.fill();
-        // VIDRO MEIO
-        ctx.beginPath();
-        ctx.rect(x+40, y-50, 26, 15);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = '#6d6d6d';
-        ctx.fill();
-        // VIDRO MEIO 2
-        ctx.beginPath();
-        ctx.rect(x+70, y-50, 20, 15);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = '#6d6d6d';
-        ctx.fill();
-        // VIDRO FRENTE
-        ctx.beginPath();
-        ctx.moveTo(x+94, y - 35);
-        ctx.lineTo(x+94, y - 50);
-        ctx.lineTo(x+94, y - 50);
-        ctx.arc(x+94, y - 44, 6, Math.PI*3/2, Math.PI*3.6/2, false);
-        ctx.lineTo(x+104, y - 35);
-        ctx.lineTo(x+90, y - 35);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = '#6d6d6d';
-        ctx.fill();
-        // MAÇANETA FRENTE
-        ctx.beginPath();
-        ctx.rect(x+53, y-26, 8, 2);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = color1;
-        ctx.fill();
-        ctx.restore();
-        rectangleRound(x - 2, y - 6, 3, 6, 2, 1, '#d23d09', '#d23d09');
-        rectangleRound(x + 107, y - 18, 5, 8, 2, 1, '#ffce37', '#ffce37');
-    }
-    carModel2(100, 200, '#e2d9c7', '#1ed9e7', '#1fbcc7', 1)
-    
-    //CAMINHÃO
-    function carModel3(x, y, width, color1, color2, color3, color4, scale, carga){
-        var x; y; color1; color2; scale;	
-        ctx.save();
-        ctx.translate(x,y);
-        ctx.scale(scale,scale);
-        ctx.translate(-x,-y);
-        if(width < 0) width = 0;
-        if(width > 200) width = 200;
-        // CARCAÇA
-        ctx.beginPath();	
-        ctx.moveTo(x+137 + width, y-1);
-        ctx.lineTo(x+137 + width, y-46);
-        ctx.arc(x+142 + width, y-51, 5, Math.PI, 3/2*Math.PI, false);
-        ctx.lineTo(x + 160 + width, y-56);
-        ctx.arc(x+165 + width, y-51, 5, 3/2*Math.PI, -0.5, false);
-        ctx.arc(x + 170 + width, y-31, 10, Math.PI*1.8,0, false);
-        ctx.arc(x + 180 + width, y-20, 13, Math.PI*1.4, 0, false);
-        ctx.lineTo(x + 193 + width, y-1);
-        ctx.lineTo(x + width, y-1);
-        ctx.lineWidth = 1.5;
-        ctx.fillStyle = color1;
-        ctx.fill();
-        //PARACHOQUE
-        ctx.beginPath();	
-        ctx.moveTo(x+1, y);
-        ctx.lineTo(x+190, y);
-        ctx.arc(x + 190 + width, y - 4, 4, Math.PI/2, 3/2*Math.PI, true);
-        ctx.lineTo(x + 1 + width, y-10);
-        ctx.arc(x + 1, y - 4, 4, Math.PI*3/2, Math.PI/2, true);
-        ctx.lineWidth = 1.5;
-        ctx.fillStyle = '#3c4144';
-        ctx.fill();
-        var det;
-        if(width < 180) det = x + 90 + width;
-        else det = x + width + 20;
-        rectangleRound(x + 1, y - 3, width+130, 10, 1, 1, '#3b3f40', '#3b3f40');
-        rectangleRound(det, y + 5, 40, 10, 0, 0, '#b3b3b3', '#b3b3b3');
-        rectangleRound(det, y + 5, 40, 6, 0, 0, '#969696', '#969696');
-        rectangleRound(det, y + 5, 40, 3, 0, 0, '#7f7f7f', '#7f7f7f');
-        if(carga){
-            //CARGA
-            ctx.beginPath();	
-            ctx.moveTo(x, y);
-            ctx.rect(x, y-67, 135 + width, 59);
-            ctx.lineWidth = 1.5;
-            ctx.fillStyle = color2;
-            ctx.fill();
-            //CARGA DETALHE
-            ctx.beginPath();	
-            ctx.moveTo(x, y);
-            ctx.rect(x, y-38, 135 + width, 30);
-            ctx.lineWidth = 1.5;
-            ctx.fillStyle = color3;
-            ctx.fill();
-            //BARRA
-            rectangleRound(x + 25 + width/2, y - 35, 82, 5, 1, 1, '#bbbabf', '#d1d0d5');
-            rectangleRound(x + 25 + width/2, y - 35, 82, 2, 1, 1, '#98989d', '#98989d');
-            rectangleRound(x + 30 + width/2, y - 29, 5, 15, 1, 1, '#444e5a', '#444e5a');
-            rectangleRound(x + 30 + width/2, y - 39, 5, 5, 1, 1, '#676d7b', '#676d7b');
-            rectangleRound(x + 34 + width/2, y - 27, 5, 20, 1, 1, '#444e5a', '#444e5a');
-            rectangleRound(x + 34 + width/2, y - 42, 5, 5, 1, 1, '#676d7b', '#676d7b');
-            rectangleRound(x + 38 + width/2, y - 25, 5, 25, 1, 1, '#444e5a', '#444e5a');
-            rectangleRound(x + 38 + width/2, y - 45, 5, 5, 1, 1, '#676d7b', '#676d7b');
-            rectangleRound(x + 97 + width/2, y - 29, 5, 15, 1, 1, '#444e5a', '#444e5a');
-            rectangleRound(x + 97 + width/2, y - 39, 5, 5, 1, 1, '#676d7b', '#676d7b');
-            rectangleRound(x + 93 + width/2, y - 27, 5, 20, 1, 1, '#444e5a', '#444e5a');
-            rectangleRound(x + 93 + width/2, y - 42, 5, 5, 1, 1, '#676d7b', '#676d7b');
-            rectangleRound(x + 89 + width/2, y - 25, 5, 25, 1, 1, '#444e5a', '#444e5a');
-            rectangleRound(x + 89 + width/2, y - 45, 5, 5, 1, 1, '#676d7b', '#676d7b');
+    function ligar(){
+        if(pesactive){
+            pesactive = false;
         }
-        roda(x + 25, y)
-        if(width >= 80) roda(x + 55, y)
-        if(width >= 130) {roda(x + width - 30, y); roda(x + width, y);}
-        if(width >= 180) {roda(x + 80 + width, y); roda(x + width + 110, y)}
-        roda(x + 160 + width, y)
-        // VIDRO FRENTE
-        ctx.beginPath();
-        ctx.moveTo(x+152 + width, y - 33);
-        ctx.lineTo(x+152 + width, y - 53);
-        ctx.lineTo(x+162 + width, y - 53);
-        ctx.arc(x+162 + width, y - 47, 6, Math.PI*3/2, Math.PI*3.6/2, false);
-        ctx.lineTo(x+175 + width, y - 33);
-        ctx.lineTo(x+158 + width, y - 33);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = '#6d6d6d';
-        ctx.fill();
-        // DETALHE FRENTE 1
-        ctx.beginPath();
-        ctx.rect(x+185 + width, y-23, 7.8, 2);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = color4;
-        ctx.fill();
-        // DETALHE FRENTE 2
-        ctx.beginPath();
-        ctx.rect(x+185 + width, y-20, 8, 2);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = color4;
-        ctx.fill();
-        // DETALHE FRENTE 3
-        ctx.beginPath();
-        ctx.rect(x+185 + width, y-17, 8, 2);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = color4;
-        ctx.fill();
-        // MAÇANETA
-        ctx.beginPath();
-        ctx.rect(x+153 + width, y-28, 8, 2);
-        ctx.lineWidth = 1;
-        ctx.fillStyle = color4;
-        ctx.fill();
-        //FAROIS
-        rectangleRound(x - 2, y - 7, 2.5, 6, 2, 1, '#d23d09', '#d23d09');
-        rectangleRound(x + 184.5 + width, y - 9, 9.5, 5, 2, 1, '#ffce37', '#ffce37');
-        function roda(x, y){
-            // DETALHE PARACHOQUE 1
-            ctx.beginPath();
-            ctx.arc(x, y-1, 16, 0, Math.PI, true);
-            ctx.lineWidth = 4;
-            ctx.fillStyle = '#3c4144';
-            ctx.fill();
-            //RODA 1
-            ctx.beginPath();
-            ctx.arc(x , y, 12, 0, 2*Math.PI, false);
-            ctx.lineWidth = 4;
-            ctx.fillStyle = '#6c6f6e';
-            ctx.fill();
-            ctx.strokeStyle = '#452837';
-            ctx.stroke();
-            // CALOTA 1
-            ctx.beginPath();
-            ctx.arc(x, y, 7, 0, 2*Math.PI, false);
-            ctx.lineWidth = 1.5;
-            ctx.fillStyle = '#ffffff';
-            ctx.fill();
+        else{
+            pesactive = true;
         }
-        ctx.restore();
     }
-    carModel3(100, 300, 200, '#e2d9c7', '#1ed9e7', '#1fbcc7', '#cac2b2', 1, true)
+    function desenhar(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        rocket(300, 200, '#00d2c9', '#00a0a3', 1, px, py)
+        if(pesactive && px != 0){
+            px -= 2; py -= 4;
+        }
+        if(!pesactive && px < 20){
+            px += 2; py += 4;
+        }
+        // rectangle(343, 200, 20, 80, 1, 0, nocolor, '#fddbab') 
+        // rectangle(348, 200, 10, 80, 1, 0, nocolor, '#fdc46d')
+        
+        // rectangle(275, 200, 50, 80, 1, 0, nocolor, '#fddbab') 
+        // rectangle(285, 200, 30, 80, 1, 0, nocolor, '#fdc46d') 
+        
+        // rectangle(237, 200, 20, 80, 1, 0, nocolor, '#fddbab') 
+        // rectangle(242, 200, 10, 80, 1, 0, nocolor, '#fdc46d')
+        animationFrame(desenhar);
+    }
+    draw(desenhar);
     
     
 </script>
