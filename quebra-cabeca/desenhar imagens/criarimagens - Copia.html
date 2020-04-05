@@ -6,21 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Criar Imagens</title>
     <style>
-        #myCanvas{
-            border: 1px solid black;
-            background-image: url('p1.png');
-            background-repeat: no-repeat;
-        }
+        ;
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="206" height="50" >
-
+    <canvas id="myCanvas" width="210" height="60" >
+        
     </canvas>
 </body>
 <script src="PSlibrary20192.js"></script>
 <script>
-    rectangle(0, 0, 206, 50, 1, 0, 'black', '#ffffff');
-    textBold('C = -B + A', '13','verdana', 52, 32, '#000000');
-    </script>
+    function fraction(x, y, numerador, denominador, tamanho, color){	
+        var x; y; numerador; denominador; color;
+        lineAngle(x - tamanho/2, y + 7, tamanho, 0, 1.5, color);
+        textStyle1(denominador, '13','verdana',x, y + 25,color);
+        textStyle1(numerador, '13','verdana',x, y,color);
+    }
+    
+    function textStyle1(word, size, font, x, y, color){
+        var wordk; size; font; x; y; color; 	
+        ctx.font = ' bold ' + size + 'pt ' +  font;
+        ctx.textAlign = 'center';
+        ctx.fillStyle = color;
+        ctx.fillText(word, x, y);
+    }
+    function peca(x, y){
+        textStyle1('x =', '13','verdana', x - 25 , 34, '#3772ae');
+        fraction(x + 25, 21, 'b + d', 'a', 50, '#3772ae');
+    }
+    //rectangle(0, 0, 206, 50, 1, 0, 'black', '#ffffff');
+    rectangleRound(2, 52, 206, 50, 10, 1.5, "#2980b9", nocolor)
+    peca(102, 5);
+</script>
 </html>

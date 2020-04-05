@@ -7,26 +7,41 @@
     <title>Criar Imagens</title>
     <style>
         #myCanvas{
-            /* border: 1px solid black; */
+            /* border: 1px solid black;
+            background-color: red; */
             /* background-image: url('bce722e5-8030-4267-9bb2-fbb2e6424d87.png');
             background-repeat: no-repeat; */
         }
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="325" height="392" >
-
+    <canvas id="myCanvas" width="340" height="392" >
+        
     </canvas>
 </body>
 <script src="PSlibrary20192.js"></script>
 <script>
-    rectangle(71, 53, 252, 337, 2, 0, '#000000', nocolor)
-    rectangle(0, 138, 323, 252, 2, 0, '#000000', nocolor)
-    rectangle(0, 222, 323, 85, 2, 0, '#000000', nocolor)
-    textBold('1º', '12','verdana', 28, 181, '#000000');
-    textBold('2º', '12','verdana', 26, 270, '#000000');
-    textBold('3º', '12','verdana', 26, 353, '#000000');
-    textBold('Tabela', '11','verdana', 159, 31, '#000000');
-    textBold('- C - A = B', '13','verdana', 145, 100, '#3772ae');
+    rectangleRound(0, 220, 60, 80, 10, 1, nocolor, "#2980b9");
+    rectangleRound(0, 300, 60, 80, 10, 1, nocolor, "#2980b9");
+    rectangleRound(0, 380, 60, 80, 10, 1, nocolor, "#2980b9");
+    rectangle(50, 140, 15, 80, 1, 0, nocolor, "#2980b9");
+    rectangle(50, 220, 15, 80, 1, 0, nocolor, "#2980b9");
+    rectangle(50, 300, 15, 80, 1, 0, nocolor, "#2980b9");
+    rectangleRound(100, 220, 235, 80, 10, 1, nocolor, nocolor);
+    rectangleRound(100, 300, 235, 80, 10, 1, nocolor, nocolor);
+    rectangleRound(100, 380, 235, 80, 10, 1, nocolor, nocolor);
+
+    rectangleRound(65, 380, 230, 320, 0, 1, "#2980b9", nocolor);
+    rectangleRound(0, 220, 335, 80, 10, 1, "#2980b9", nocolor);
+    rectangleRound(0, 300, 335, 80, 10, 1, "#2980b9", nocolor);
+    rectangleRound(0, 380, 335, 80, 10, 1, "#2980b9", nocolor);
+    
+    textBold('1º', '12','verdana', 30, 186, '#fff');
+    textBold('2º', '12','verdana', 30, 266, '#fff');
+    textBold('3º', '12','verdana', 30, 346, '#fff');
+    
+    //rectangleRound(140, 140, 108, 80, 10, 1, 'red', nocolor)
+    textBold('a =       + d', '13','verdana', 130, 105, "#2980b9");
+    fraction(175, 92, 'b', 'x', "#2980b9")
 </script>
 </html>

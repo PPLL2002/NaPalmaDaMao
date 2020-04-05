@@ -686,7 +686,7 @@ function symbolSub(word, sub, size, font, x, y, dx, color){
 //ESCREVER TEXTO ESTILO I 
 function textStyle1(word, size, font, x, y, color){
 	var wordk; size; font; x; y; color; 	
-	ctx.font = 'small-caps bold ' + size + 'pt ' +  font;
+	ctx.font = ' bold ' + size + 'pt ' +  font;
 	ctx.fillStyle = color;
 	ctx.fillText(word, x, y);
 }
@@ -833,17 +833,9 @@ function graphic(x0, y0, limit, color, matX, matY, step){
 
 function fraction(x, y, numerador, denominador, color){	
 	var x; y; numerador; denominador; color;
-	lineAngle(x - 7, y + 7, 27, 0, 1.5, color);
-	if(denominador < 10){
-		textStyle1(denominador, '12','verdana',x, y + 25,color);
-	}else{
-		textStyle1(denominador, '12','verdana',x - 5, y + 25,color);
-	}
-	if(numerador < 10){
-		textStyle1(numerador, '12','verdana',x, y,color);
-	}else{
-		textStyle1(numerador, '12','verdana',x - 5, y,color);
-	}
+	lineAngle(x - 7, y + 7, 30, 0, 1.5, color);
+		textStyle1(denominador, '13','verdana',x, y + 25,color);
+		textStyle1(numerador, '13','verdana',x, y,color);
 }
 
 function retFraction1(x, y, L, H, N, D, color){

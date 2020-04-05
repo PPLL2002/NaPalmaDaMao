@@ -1,0 +1,27 @@
+#container{
+    display: block;
+}
+
+#fundo{
+    opacity: 1;
+}
+
+.confirmarBtn {
+    position: relative;
+    width: 100px;
+    height: 25px;
+    left: 415px;
+    border-radius: 5px;
+    color: white;
+    border: 2px solid #2980b9;
+    background-color: #2980b9;
+    font-size: 13px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.color2 {
+    border: 2px solid #dd962d;
+    background-color: #dd962d;   
+}
+
+
