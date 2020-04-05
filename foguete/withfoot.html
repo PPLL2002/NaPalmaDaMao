@@ -6,76 +6,28 @@
     <title>Foguete</title>
 </head>
 <body>
-    <canvas style="border: 1px solid black" id="myCanvas"></canvas>
+    <canvas style="border: 1px solid black" id="myCanvas" width="640" height="360"></canvas>
+    <button onclick="ligar()">LIGAR</button>
 </body>
 <script src="PSlibrary20192.js"></script>
 <script>
-    var altura, largura;
-    var chao = {
-        x: 300,
-        y: 550,
-        altura:50,
-        cor: "#ffdf70",
-        
-        desenha: function(){
-            rectangle(this.x + 20, this.y - 55, 10, 65, 1, 45, '#909090', '#909090');
-            rectangle(this.x + 20, this.y - 55, 5, 65, 1, 45, '#afafaf', '#afafaf');
-            rectangle(this.x - 25, this.y - 48, 10, 65, 1, -45, '#afafaf', '#afafaf');
-            rectangle(this.x - 25, this.y - 48, 5, 65, 1, -45, '#909090', '#909090');
-            rectangle(this.x + 20, this.y - 105, 10, 65, 1, 45, '#909090', '#909090');
-            rectangle(this.x + 20, this.y - 105, 5, 65, 1, 45, '#afafaf', '#afafaf');
-            rectangle(this.x - 25, this.y - 98, 10, 65, 1, -45, '#afafaf', '#afafaf');
-            rectangle(this.x - 25, this.y - 98, 5, 65, 1, -45, '#909090', '#909090');
-            rectangleRound(this.x - 62, this.y, 124, 8, 4, 1, '#afafaf', '#afafaf');
-            rectangleRound(this.x - 45, this.y - 112, 90, 8, 4, 1, '#afafaf', '#afafaf');
-            rectangleRound(this.x - 28, this.y, 10, 120, 3, 1, '#afafaf', '#afafaf');
-            rectangleRound(this.x + 20, this.y, 10, 120, 3, 1, '#afafaf', '#afafaf');
-            ctx.fillStyle = this.cor;
-            ctx.fillRect(0, this.y, largura, this.altura);
-        }
-    };
-    
-    var foguete = {
-        x: 300,
-        y: 50,
-        scale: 1,
-        fire: 0,
-        gravidade: 0.2,
-        velocidade: 0,
-        forcaPropulsor: 1,
-        
-        atualiza: function(){
-            this.velocidade += this.gravidade;
-            this.y += this.velocidade;
-            if(this.fire > 0) this.fire -= 1;
-            if(this.y > chao.y - 8){
-                this.y = chao.y - 8;
-                this.velocidade = 0;
-            }
-        },
-        
-        anda: function(){
-            this.velocidade -= this.forcaPropulsor;
-            if(this.fire < 50)this.fire += 5;
-        },
-        
-        desenha: function(){
-            rocket(this.x, this.y, '#000', '#000', 1)
-            rectangle(this.x - 63, this.y, 20, this.fire, 1, 0, nocolor, '#fddbabb0') 
-            rectangle(this.x - 58, this.y, 10, this.fire, 1, 0, nocolor, '#fdc46dd1')
-            rectangle(this.x - 25, this.y, 50, this.fire, 1, 0, nocolor, '#fddbabb0') 
-            rectangle(this.x - 15, this.y, 30, this.fire, 1, 0, nocolor, '#fdc46dd1') 
-            rectangle(this.x + 43, this.y, 20, this.fire, 1, 0, nocolor, '#fddbabb0') 
-            rectangle(this.x + 48, this.y, 10, this.fire, 1, 0, nocolor, '#fdc46dd1')
-        }
-    };
-    
-    function rocket(x, y, color1, color2, scale){
+    var pesactive = false;
+    var px = 20;
+    var py = 40;
+    //FOGUETE
+    function rocket(x, y, color1, color2, scale, pesx, pesy){
         var x; y; color1; color2; scale;	
         ctx.save();
         ctx.translate(x,y);
         ctx.scale(scale,scale);
         ctx.translate(-x,-y);
+        //PÉS FOGUETE
+        rectangle(x + pesx - 25, y - 28 - pesy, 10, 50, 1, 30, '#909090', '#909090');
+        rectangle(x + pesx - 25, y - 28 - pesy, 5, 50, 1, 30, '#afafaf', '#afafaf');
+        rectangleRound(x + pesx - 52, y + 22 - pesy, 15, 8, 4, 1, '#afafaf', '#afafaf');
+        rectangle(x - pesx + 15, y - 25 - pesy, 10, 50, 1, -30, '#909090', '#909090');
+        rectangle(x - pesx + 20, y - 27 - pesy, 5, 50, 1, -30, '#afafaf', '#afafaf');
+        rectangleRound(x - pesx + 37, y + 22 - pesy, 15, 8, 4, 1, '#afafaf', '#afafaf');
         //ASA ESQUERDA
         ctx.beginPath();	
         ctx.moveTo(x - 27, y - 89);
@@ -229,43 +181,35 @@
         ctx.restore();
     }
     
-    
-    function anda(event){
-        if(event.key == "ArrowUp") foguete.anda();
+    function ligar(){
+        if(pesactive){
+            pesactive = false;
+        }
+        else{
+            pesactive = true;
+        }
     }
-    
-    function main(){
-        altura = window.innerHeight;
-        largura = window.innerWidth;
-        if(largura >= 500){largura = 600; altura = 600;}
-        canvas.width = largura;
-        canvas.height = altura;
+    function desenhar(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        rocket(300, 200, '#00d2c9', '#00a0a3', 1, px, py)
+        if(pesactive && px != 0){
+            px -= 2; py -= 4;
+        }
+        if(!pesactive && px < 20){
+            px += 2; py += 4;
+        }
+        // rectangle(343, 200, 20, 80, 1, 0, nocolor, '#fddbab') 
+        // rectangle(348, 200, 10, 80, 1, 0, nocolor, '#fdc46d')
         
-        document.addEventListener("keydown", anda);
+        // rectangle(275, 200, 50, 80, 1, 0, nocolor, '#fddbab') 
+        // rectangle(285, 200, 30, 80, 1, 0, nocolor, '#fdc46d') 
         
-        roda();
+        // rectangle(237, 200, 20, 80, 1, 0, nocolor, '#fddbab') 
+        // rectangle(242, 200, 10, 80, 1, 0, nocolor, '#fdc46d')
+        animationFrame(desenhar);
     }
+    draw(desenhar);
     
-    function roda() {
-        atualiza();
-        desenha();
-        
-        window.requestAnimationFrame(roda);
-    }
-    
-    function atualiza() {
-        foguete.atualiza();
-    }
-    
-    function desenha() {
-        ctx.fillStyle = "#9ebee6";
-        ctx.fillRect(0,0, largura, altura);
-        chao.desenha();
-        foguete.desenha();
-    }
-    
-    //inicializa
-    main();
     
 </script>
 </html>
