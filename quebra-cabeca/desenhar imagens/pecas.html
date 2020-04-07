@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Criar Imagens</title>
     <style>
-        ;
+        *{margin: 0; padding: 0;}
+        body{}
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="210" height="60" >
+    <canvas id="myCanvas" width="209" height="53" >
         
     </canvas>
 </body>
@@ -31,11 +32,11 @@
         ctx.fillText(word, x, y);
     }
     function peca(x, y){
-        textStyle1('x =', '13','verdana', x - 25 , 34, '#3772ae');
+        textStyle1('x =', '13','verdana', x - 25, 34, '#3772ae');
         fraction(x + 25, 21, 'b + d', 'a', 50, '#3772ae');
     }
     //rectangle(0, 0, 206, 50, 1, 0, 'black', '#ffffff');
-    rectangleRound(2, 52, 206, 50, 10, 1.5, "#2980b9", nocolor)
+    rectangleRound(2, 52, 206, 50, 10, 1.5, "#2980b9", "#fff")
     peca(102, 5);
 </script>
 </html>

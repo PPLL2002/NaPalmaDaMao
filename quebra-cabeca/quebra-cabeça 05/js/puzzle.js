@@ -5,8 +5,8 @@ var answer = document.querySelectorAll('.answer');
 var confirmarBtn = document.querySelector('.confirmarBtn');
 
 // TAMANHO DAS PEÇAS 
-var tamW = [206, 206, 206, 206, 206]
-var tamH = [55, 55, 55, 55, 55]
+var tamW = [209, 209, 209, 209, 209]
+var tamH = [53, 53, 53, 53, 53]
 var pY = []
 
 function numeroAleatorios(){
@@ -89,8 +89,8 @@ function reordernar(evt){
 }
 
 // LOCAL CORRETO DE CADA PEÇA
-var origX = [417, 417, 417];
-var origY = [155, 235, 315];
+var origX = [415, 415, 415];
+var origY = [154, 234, 314];
 
 function unir(){
     for(var i = 0; i < pecas.length; i++){
