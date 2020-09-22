@@ -1,0 +1,49 @@
+/* body{
+    background-image: url("figura01b.png");
+    background-position: 100px 25px;
+} */
+
+
+:root{
+    --dy: 60px;
+    --dx: 200px;
+    
+    /* tamanho da caixa de texto*/
+    --altura1: 25px;  --largura1: 40px;    
+    
+    /* caixa de texto 01 */
+    --top1: 1px;                               --left1:1px;
+    
+    /* caixa de texto 02 */
+    --top2:calc(var(--top1) + var(--dy)); 		--left2:calc(var(--left1));
+    
+    /* caixa de texto 03 */
+    --top3:calc(var(--top2) + var(--dy));  		--left3:calc(var(--left1));
+    
+    /* caixa de texto 04 */
+    --top4:calc(var(--top3) + var(--dy));  		--left4:calc(var(--left1));
+    
+    /* caixa de texto 05 */
+    --top5:calc(var(--top4) + var(--dy));  		--left5:calc(var(--left1));
+    
+    /* caixa de texto 06 */
+    --top6:calc(var(--top5) + var(--dy));  		--left6:calc(var(--left1) + var(--dx)); 
+    
+    /* caixa de texto 07*/
+    --top7:calc(var(--top6) + var(--dy));  		--left7:calc(var(--left1) + var(--dx)); 
+    
+    /* caixa de texto 08 */
+    --top8:calc(var(--top7) + var(--dy));  		--left8:calc(var(--left1) + var(--dx)); 
+    
+    /* caixa de texto 09 */
+    --top9:calc(var(--top8) + var(--dy));  		--left9:calc(var(--left1) + var(--dx)); 
+    
+    /* caixa de texto 10 */
+    --top10:calc(var(--top9) + var(--dy));  	--left10:calc(var(--left1) + var(--dx)); 
+    
+    /* Botões e mensagem */
+    --top11:305px; --left6:80px;
+    
+    /* Distancia do marcador */
+    --margin1: 3px;
+}

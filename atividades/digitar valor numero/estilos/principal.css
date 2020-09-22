@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body{
+    background-repeat: no-repeat;
+}
+
+/* CAIXAS DE TEXTO */
+input[type="text"]{
+    height: var(--altura1);
+    width: var(--largura1);
+    text-align: center;
+    background-color: transparent;
+	border: 1.5px solid #2980b9;
+    padding: 3px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 2px;
+    margin-left: 10px;
+}
+form div{
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+div:nth-child(1){
+    top: var(--top1);
+    left: var(--left1);
+}
+div:nth-child(2){
+    top: var(--top2);
+    left: var(--left2);
+}
+div:nth-child(3){
+    top: var(--top3);
+    left: var(--left3);
+}
+div:nth-child(4){
+    top: var(--top4);
+    left: var(--left4);
+}
+div:nth-child(5){
+    top: var(--top5);
+    left: var(--left5);
+}
+div:nth-child(6){
+    top: var(--top1);
+    left: var(--left7);
+}
+div:nth-child(7){
+    top: var(--top2);
+    left: var(--left7);
+}
+div:nth-child(8){
+    top: var(--top3);
+    left: var(--left8);
+}
+div:nth-child(9){
+    top: var(--top4);
+    left: var(--left9);
+}
+div:nth-child(10){
+    top: var(--top5);
+    left: var(--left10);
+}
+/* DIV DOS BOTÕES E DA MENSAGEM */
+div#containerBotoes{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    flex-wrap: wrap;
+    top: var(--top11);
+    left: var(--left6);
+}
+label{
+    font-size: 1.1em;
+    font-family: 'Open Sans';
+    border-bottom: 1px solid rgb(172, 171, 171);
+    padding-bottom: 7px;
+}
+span.marcador{
+    margin-left: var(--margin1);
+    margin-bottom: 7px;
+}
+/* BOTÃO CONFIRMAR */
+.confirmarBtn {
+	-webkit-transition: all 100ms ease-in-out;
+	-o-transition: all 100ms ease-in-out;
+	transition: all 100ms ease-in-out;
+	display: inline-block;
+	background-color: rgba(56, 103, 214,1.0);
+	color: white;
+	padding: 5px 20px 5px 20px;
+	text-decoration: none;
+	box-sizing: border-box;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	border: 2px;
+	border-radius: 4px;
+    z-index: 0;
+    margin-left: 8px;
+}
+.confirmarBtn:hover {
+	cursor: pointer;
+	background: rgba(56, 103, 214,0.8);
+}
+
+/* BOTÃO LIMPAR */
+.apagarBtn {
+	-webkit-transition: all 100ms ease-in-out;
+	-o-transition: all 100ms ease-in-out;
+	transition: all 100ms ease-in-out;
+	display: none;
+	background-color: #8395a7;
+	color: white;
+	padding: 5px 20px 5px 20px;
+	text-decoration: none;
+	box-sizing: border-box;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	border: 2px;
+	border-radius: 4px;
+	z-index: 0;
+}
+
+.apagarBtn:hover {
+	cursor: pointer;
+	background: rgba(131, 149, 167,0.8);
+}
+
+/* MENSAGEM */
+.mensagem{
+    margin-top: 8px;
+    font-weight: bold;
+    display: none;
+    width: 200px;
+    text-align: center;
+}
+p span{
+    color: red;
+}
+p span.verde{
+    color: rgb(2, 97, 31);
+    width: 100px;
+}

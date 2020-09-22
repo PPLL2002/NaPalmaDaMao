@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="estilos/principal.css">
+    <link rel="stylesheet" type="text/css" href="estilos/variaveis.css">
+    <title>Digitar valor</title>
+</head>
+<body>
+    <form action="" autocomplete="off">
+        <div>
+            <label for="01">
+                <b>a)</b> (5) +<input type="text" name="ex" id="01"> = 7
+            </label>
+            <span class="marcador" id="rs01"></span>
+        </div>
+        <div>
+            <label for="02">
+                <b>b)</b> (-3) +<input type="text" name="ex" id="02"> = 0
+            </label>
+            <span class="marcador" id="rs02"></span>
+        </div>
+        <div>
+            <label for="03">
+                <b>c)</b> (-12) +<input type="text" name="ex" id="03"> = 8
+            </label>
+            <span class="marcador" id="rs03"></span>
+        </div>
+        <div>
+            <label for="04">
+                <b>d)</b><input type="text" name="ex" id="04"> + (-5) = -5
+            </label>
+            <span class="marcador" id="rs04"></span>
+        </div>
+        <div>
+            <label for="05">
+                <b>e)</b><input type="text" name="ex" id="05"> - (-4) = 10
+            </label>
+            <span class="marcador" id="rs05"></span>
+        </div>
+        <div>
+            <label for="06">
+                <b>f)</b> (-15) +<input type="text" name="ex" id="06"> = 12
+            </label>
+            <span class="marcador" id="rs06"></span>
+        </div>
+        <div>
+            <label for="07">
+                <b>g)</b> (30) -<input type="text" name="ex" id="07"> = -17
+            </label>
+            <span class="marcador" id="rs07"></span>
+        </div>
+        <div>
+            <label for="08">
+                <b>h)</b><input type="text" name="ex" id="08"> + (8) = -15
+            </label>
+            <span class="marcador" id="rs08"></span>
+        </div>
+        <div>
+            <label for="09">
+                <b>i)</b><input type="text" name="ex" id="09"> - (-7) = 19
+            </label>
+            <span class="marcador" id="rs09"></span>
+        </div>
+        <div>
+            <label for="10">
+                <b>j)</b> -<input type="text" name="ex" id="10"> + (4) = 12
+            </label>
+            <span class="marcador" id="rs10"></span>
+        </div>
+        <div id="containerBotoes">
+            <input class="apagarBtn" type="button" id="refazer" value="Refazer">
+            <input class="apagarBtn" type="button" id="tente-novamente" value="Tente novamente">
+            <input class="confirmarBtn" type="button" id="confirmar" value="Confirmar">
+            <p class="mensagem" id="m01"><span>Digite todas as respotas!</span></p>
+            <p class="mensagem" id="m02"><span style="color: rgb(40, 138, 16);">Parabéns</span></p>
+            <p class="mensagem" id="m03"><span>Errado...</span></p>
+        </div>
+    </form>
+</body>
+<script src="js/verificarRespostas.js"></script>
+</html>
