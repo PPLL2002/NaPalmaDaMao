@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foguete</title>
+</head>
+<body>
+    <canvas style="border: 1px solid black" id="myCanvas"></canvas>
+</body>
+<script>
+    var altura = 800;
+    var largura = 600
+    
+    var canvas = document.getElementById('myCanvas');
+    canvas.setAttribute('width', largura);
+    canvas.setAttribute('height', altura);
+    var ctx = canvas.getContext('2d');
+    
+    
+    function CarroSuperior(x, y, scale, color1, color2, color3){
+        ctx.save();
+        ctx.translate(x,y);
+        ctx.scale(scale,scale);
+        ctx.translate(-x,-y);
+        
+        //CARCAÇA
+        ctx.beginPath();
+        ctx.moveTo(x,y);
+        //LATERAL DIREITA
+        ctx.quadraticCurveTo(x + 50, y, x + 55, y + 60);
+        ctx.quadraticCurveTo(x + 55, y + 65, x + 53, y + 85);
+        ctx.quadraticCurveTo(x + 50, y + 100, x + 57, y + 190);
+        ctx.quadraticCurveTo(x + 50, y + 250, x + 25, y + 250);
+        ctx.lineTo(x - 25, y + 250);
+        //LATERA ESQUERDA
+        ctx.moveTo(x,y);
+        ctx.quadraticCurveTo(x - 50, y, x - 55, y + 60);
+        ctx.quadraticCurveTo(x - 55, y + 65, x - 53, y + 85);
+        ctx.quadraticCurveTo(x - 50, y + 100, x - 57, y + 190);
+        ctx.quadraticCurveTo(x - 50, y + 250, x - 25, y + 250);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color2;
+        ctx.stroke();
+        ctx.fillStyle = color2;
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.moveTo(x,y + 10);
+        //LATERAL DIREITA
+        ctx.quadraticCurveTo(x + 45, y + 10, x + 50, y + 60);
+        ctx.quadraticCurveTo(x + 50, y + 65, x + 53, y + 85);
+        ctx.quadraticCurveTo(x + 50, y + 100, x + 57, y + 190);
+        ctx.quadraticCurveTo(x + 50, y + 250, x + 25, y + 250);
+        ctx.lineTo(x - 25, y + 250)
+        //LATERAL ESQUERDA
+        ctx.moveTo(x,y + 10);
+        ctx.quadraticCurveTo(x - 45, y + 10, x - 50, y + 60);
+        ctx.quadraticCurveTo(x - 50, y + 65, x - 53, y + 85);
+        ctx.quadraticCurveTo(x - 50, y + 100, x - 57, y + 190);
+        ctx.quadraticCurveTo(x - 50, y + 250, x - 25, y + 250);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color1;
+        ctx.stroke();
+        ctx.fillStyle = color1;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x,y + 60);
+        ctx.quadraticCurveTo(x + 40, y + 60, x + 45, y + 85);
+        ctx.lineTo(x + 35, y + 110);
+        ctx.lineTo(x, y + 110);
+        ctx.moveTo(x,y + 60);
+        ctx.quadraticCurveTo(x - 40, y + 60, x - 45, y + 85);
+        ctx.lineTo(x - 35, y + 110);
+        ctx.lineTo(x, y + 110);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color3;
+        ctx.stroke();
+        ctx.fillStyle = color3;
+        ctx.fill();
+        
+        //VIDRO FRENTE
+        ctx.beginPath();
+        ctx.moveTo(x + 47,y + 93);
+        ctx.quadraticCurveTo(x + 53, y + 140, x + 48, y + 180);
+        ctx.quadraticCurveTo(x + 32, y + 140, x + 35, y + 140);
+        ctx.quadraticCurveTo(x + 30, y + 140, x + 47, y + 93);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color3;
+        ctx.stroke();
+        ctx.fillStyle = color3;
+        ctx.fill();
+        
+        //VIDROS LATERAIS
+        ctx.beginPath();
+        ctx.moveTo(x - 47,y + 93);
+        ctx.quadraticCurveTo(x - 53, y + 140, x - 48, y + 180);
+        ctx.quadraticCurveTo(x - 32, y + 140, x - 35, y + 140);
+        ctx.quadraticCurveTo(x - 30, y + 140, x - 47, y + 93);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color3;
+        ctx.stroke();
+        ctx.fillStyle = color3;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x,y + 180);
+        ctx.lineTo(x + 30, y + 180);
+        ctx.lineTo(x + 35, y + 195);
+        ctx.lineTo(x + 30, y + 210);
+        ctx.lineTo(x, y + 210);
+        ctx.lineTo(x - 30, y + 210);
+        ctx.lineTo(x - 35, y + 195);
+        ctx.lineTo(x - 30, y + 180);
+        ctx.lineTo(x, y + 180);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color3;
+        ctx.stroke();
+        ctx.fillStyle = color3;
+        ctx.fill();
+        
+        //DETALHE TRAS
+        ctx.beginPath();
+        ctx.moveTo(x + 47,y + 187);
+        ctx.quadraticCurveTo(x + 33, y + 220, x + 33, y + 238);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color2;
+        ctx.stroke();
+        ctx.fillStyle = color2;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x - 47,y + 187);
+        ctx.quadraticCurveTo(x - 33, y + 220, x - 33, y + 238);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color2;
+        ctx.stroke();
+        ctx.fillStyle = color2;
+        ctx.fill();
+        
+        //DETALHE FRENTE
+        ctx.beginPath();
+        ctx.moveTo(x + 15,y + 20);
+        ctx.quadraticCurveTo(x + 12, y + 30, x + 35, y + 55);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color2;
+        ctx.stroke();
+        ctx.fillStyle = color2;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x - 15,y + 20);
+        ctx.quadraticCurveTo(x - 12, y + 30, x - 35, y + 55);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color2;
+        ctx.stroke();
+        ctx.fillStyle = color2;
+        ctx.fill();
+        
+        //FAROL FRENTE
+        ctx.beginPath();
+        ctx.moveTo(x+32,y + 12);
+        ctx.quadraticCurveTo(x + 50, y + 15, x + 48, y + 35);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#e7e7e7';
+        ctx.stroke();
+        ctx.fillStyle = '#e7e7e7';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x-32,y + 12);
+        ctx.quadraticCurveTo(x - 50, y + 15, x - 48, y + 35);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#e7e7e7';
+        ctx.stroke();
+        ctx.fillStyle = '#e7e7e7';
+        ctx.fill();
+        
+        //FAROL TRASEIRO
+        ctx.beginPath();
+        ctx.moveTo(x+30,y + 250);
+        ctx.quadraticCurveTo(x + 45, y + 245, x + 47, y + 230);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#870e13";
+        ctx.stroke();
+        ctx.fillStyle = '#870e13';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x-30,y + 250);
+        ctx.quadraticCurveTo(x - 45, y + 245, x - 47, y + 230);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#870e13";
+        ctx.stroke();
+        ctx.fillStyle = '#870e13';
+        ctx.fill();
+        
+        
+        ctx.restore();
+    }
+    
+    window.onload = function(){
+        CarroSuperior(200,100, 1, '#cf2634', '#b92125', '#132136')
+    }
+</script>
+</html>
