@@ -9,20 +9,54 @@
     <canvas style="border: 1px solid black" id="myCanvas"></canvas>
 </body>
 <script>
-    var altura = 800;
-    var largura = 600
-    
+    var altura;
+    var largura;
     var canvas = document.getElementById('myCanvas');
-    canvas.setAttribute('width', largura);
-    canvas.setAttribute('height', altura);
     var ctx = canvas.getContext('2d');
     
+    var carro = {
+        x: 300,
+        y: 500,
+        velocidade: 0,
+        scale: 1,
+        inercia: 0.3,
+        rotation: 0,
+        
+        atualiza: function(){  
+            if(this.velocidade == 0) this.inercia = 0   
+            else this.inercia = 0.3;
+            if(this.velocidade > 0) this.velocidade -= this.inercia;
+            if(this.velocidade < 0) this.velocidade += this.inercia;
+
+            this.y -= this.velocidade;  
+
+            if(this.y <= 0) {this.velocidade = 0; this.y = 0;}
+            if(this.y >= canvas.height - 100) {this.velocidade = 0; this.y = canvas.height - 100;}
+        },
+        
+        anda: function(tecla){
+            if(tecla == "ArrowUp")this.velocidade += 0.9; 
+            if(tecla == "ArrowDown")this.velocidade -= 0.9; 
+            console.log('frente')
+        },
+
+        anda_lados: function(tecla){
+            if(tecla == "ArrowLeft")this.rotation -= 1; 
+            if(tecla == "ArrowRight")this.rotation += 1; 
+            console.log('lado')
+        },
+        
+        desenha: function(){
+            CarroSuperior(this.x,this.y, this.scale, '#cf2634', '#b92125', '#132136', this.rotation)
+        }
+    }
     
-    function CarroSuperior(x, y, scale, color1, color2, color3){
+    function CarroSuperior(x, y, scale, color1, color2, color3, rotation){
         ctx.save();
         ctx.translate(x,y);
         ctx.scale(scale,scale);
         ctx.translate(-x,-y);
+        ctx.rotate(rotation*Math.PI/180); 	
         
         //CARCAÇA
         ctx.beginPath();
@@ -159,17 +193,17 @@
         ctx.moveTo(x+32,y + 12);
         ctx.quadraticCurveTo(x + 50, y + 15, x + 48, y + 35);
         ctx.lineWidth = 1;
-        ctx.strokeStyle = '#e7e7e7';
+        ctx.strokeStyle = '#f3de97';
         ctx.stroke();
-        ctx.fillStyle = '#e7e7e7';
+        ctx.fillStyle = '#f3de97';
         ctx.fill();
         ctx.beginPath();
         ctx.moveTo(x-32,y + 12);
         ctx.quadraticCurveTo(x - 50, y + 15, x - 48, y + 35);
         ctx.lineWidth = 1;
-        ctx.strokeStyle = '#e7e7e7';
+        ctx.strokeStyle = '#f3de97';
         ctx.stroke();
-        ctx.fillStyle = '#e7e7e7';
+        ctx.fillStyle = '#f3de97';
         ctx.fill();
         
         //FAROL TRASEIRO
@@ -194,8 +228,43 @@
         ctx.restore();
     }
     
-    window.onload = function(){
-        CarroSuperior(200,100, 1, '#cf2634', '#b92125', '#132136')
+    function andar(event){
+        carro.anda(event.key);
     }
+
+    function andarLados(event){
+        carro.anda_lados(event.key);
+    }
+    function main(){
+        altura = window.innerHeight;
+        largura = window.innerWidth;
+        if(largura >= 500){largura = 600; altura = 600;}
+        canvas.width = largura;
+        canvas.height = altura;
+        
+        document.addEventListener("keydown", andar);
+        document.addEventListener("keydown", andarLados);
+        
+        roda();
+    }
+    
+    function roda(){
+        desenha();
+        atualiza();
+        
+        window.requestAnimationFrame(roda);
+    }
+    
+    function atualiza(){
+        carro.atualiza();
+    }
+    
+    function desenha(){
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0,0, largura, altura);
+        carro.desenha();
+    }
+    
+    main();
 </script>
 </html>
