@@ -14,9 +14,16 @@
     var canvas = document.getElementById('myCanvas');
     var ctx = canvas.getContext('2d');
     
+    var map = {
+        "ArrowLeft": 37,
+        "ArrowUp": 38,
+        "ArrowRight": 39,
+        "ArrowDown": 40,
+    }; // You could also use an array
+    
     var carro = {
-        x: 300,
-        y: 500,
+        x: 600,
+        y: 300,
         velocidade: 0,
         scale: 1,
         inercia: 0.3,
@@ -34,16 +41,9 @@
             if(this.y >= canvas.height - 100) {this.velocidade = 0; this.y = canvas.height - 100;}
         },
         
-        anda: function(tecla){
-            if(tecla == "ArrowUp")this.velocidade += 0.9; 
-            if(tecla == "ArrowDown")this.velocidade -= 0.9; 
-            console.log('frente')
-        },
-        
-        anda_lados: function(tecla){
-            if(tecla == "ArrowLeft")this.rotation -= 1; 
-            if(tecla == "ArrowRight")this.rotation += 1; 
-            console.log('lado')
+        anda: function(v, r){
+            this.velocidade += v; 
+            this.rotation += r;
         },
         
         desenha: function(){
@@ -51,13 +51,27 @@
         }
     }
     
+    onkeydown = onkeyup = function(e){
+        e = e || event; // to deal with IE
+        map[e.keyCode] = e.type == 'keydown';
+        if(map[38] && map[39]) carro.anda(0.9, 1);
+        if(map[40]) carro.anda(-0.9, 0)
+    }
+    
     function CarroSuperior(x, y, scale, color1, color2, color3, rotation){
         ctx.save();
         ctx.translate(x,y);
+        ctx.rotate(rotation*Math.PI/180); 
         ctx.scale(scale,scale);
         ctx.translate(-x,-y);
-        ctx.rotate(rotation*Math.PI/180); 	
         
+        ctx.beginPath();
+        ctx.moveTo(x,0);
+        ctx.lineTo(x, 1000)
+        ctx.lineTo(x + 5, 1000)
+        ctx.strokeStyle = color2;
+        ctx.stroke();
+
         //CARCAÇA
         ctx.beginPath();
         ctx.moveTo(x,y - 125);
@@ -228,52 +242,47 @@
         ctx.fillStyle = '#870e13';
         ctx.fill();
         
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, 2 * Math.PI);
-        ctx.stroke();
-        ctx.fillStyle = '#870e13';
-        ctx.fill();
         
         ctx.restore();
     }
     
-    function andar(event){
-        carro.anda(event.key);
-    }
-    
-    function andarLados(event){
-        carro.anda_lados(event.key);
-    }
-    function main(){
-        altura = window.innerHeight;
-        largura = window.innerWidth;
-        if(largura >= 500){largura = 600; altura = 600;}
-        canvas.width = largura;
-        canvas.height = altura;
+    // function andar(event){
+        //     carro.anda(event.key);
+        // }
         
-        document.addEventListener("keydown", andar);
-        document.addEventListener("keydown", andarLados);
-        
-        roda();
-    }
-    
-    function roda(){
-        desenha();
-        atualiza();
-        
-        window.requestAnimationFrame(roda);
-    }
-    
-    function atualiza(){
-        carro.atualiza();
-    }
-    
-    function desenha(){
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0,0, largura, altura);
-        carro.desenha();
-    }
-    
-    main();
-</script>
-</html>
+        // function andarLados(event){
+            //     carro.anda_lados(event.key);
+            // }
+            function main(){
+                altura = window.innerHeight;
+                largura = window.innerWidth;
+                if(largura >= 500){largura = window.innerWidth; altura = window.innerHeight;}
+                canvas.width = largura;
+                canvas.height = altura;
+                
+                // document.addEventListener("keydown", andar);
+                // document.addEventListener("keydown", andarLados);
+                
+                roda();
+            }
+            
+            function roda(){
+                desenha();
+                atualiza();
+                
+                window.requestAnimationFrame(roda);
+            }
+            
+            function atualiza(){
+                carro.atualiza();
+            }
+            
+            function desenha(){
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0,0, largura, altura);
+                carro.desenha();
+            }
+            
+            main();
+        </script>
+        </html>

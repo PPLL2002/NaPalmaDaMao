@@ -1,55 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foguete</title>
-</head>
-<body>
-    <canvas style="border: 1px solid black" id="myCanvas"></canvas>
-</body>
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8"/>
+<canvas id="myCanvas" width="640px" height="360px"></canvas>
+<script src="http://napalmadamao.ifrn.edu.br/PSlibrary/PSlibrary2020.js"></script>   
 <script>
-    var altura;
-    var largura;
-    var canvas = document.getElementById('myCanvas');
-    var ctx = canvas.getContext('2d');
+    //***********************************************
+    var x0 = 180;
+    var y0 = 240;
+    var x = 180;
+    var y = 180;
     
-    var carro = {
-        x: 300,
-        y: 500,
-        velocidade: 0,
-        scale: 1,
-        inercia: 0.3,
-        rotation: 0,
-        
-        atualiza: function(){  
-            if(this.velocidade == 0) this.inercia = 0   
-            else this.inercia = 0.3;
-            if(this.velocidade > 0) this.velocidade -= this.inercia;
-            if(this.velocidade < 0) this.velocidade += this.inercia;
-            
-            this.y -= this.velocidade;  
-            
-            if(this.y <= 0) {this.velocidade = 0; this.y = 0;}
-            if(this.y >= canvas.height - 100) {this.velocidade = 0; this.y = canvas.height - 100;}
-        },
-        
-        anda: function(tecla){
-            if(tecla == "ArrowUp")this.velocidade += 0.9; 
-            if(tecla == "ArrowDown")this.velocidade -= 0.9; 
-            console.log('frente')
-        },
-        
-        anda_lados: function(tecla){
-            if(tecla == "ArrowLeft")this.rotation -= 1; 
-            if(tecla == "ArrowRight")this.rotation += 1; 
-            console.log('lado')
-        },
-        
-        desenha: function(){
-            CarroSuperior(this.x,this.y, this.scale, '#cf2634', '#b92125', '#132136', this.rotation)
-        }
-    }
+    var corGrade = 'rgba(100,100,150,0.5)';
+    var corEixo = 'rgba(104, 104, 125,0.8)';
+    //
+    var V = 180;
+    var angulo = 30;
+    var vx = V*Math.cos(angulo*Math.PI/180);
+    var vy = V*Math.sin(angulo*Math.PI/180);
+    var dt = 0.016;
+    var dx;
+    var dy;
+    
+    var map = {
+        "ArrowLeft": 37,
+        "ArrowUp": 38,
+        "ArrowRight": 39,
+        "ArrowDown": 40,
+    }; // You could also use an array
     
     function CarroSuperior(x, y, scale, color1, color2, color3, rotation){
         ctx.save();
@@ -237,43 +214,64 @@
         ctx.restore();
     }
     
-    function andar(event){
-        carro.anda(event.key);
-    }
-    
-    function andarLados(event){
-        carro.anda_lados(event.key);
-    }
-    function main(){
-        altura = window.innerHeight;
-        largura = window.innerWidth;
-        if(largura >= 500){largura = 600; altura = 600;}
-        canvas.width = largura;
-        canvas.height = altura;
+    function carrinho(x, y, angulo){
+        var x; y; angulo;
+        ctx.save();
+        ctx.translate(x,y);
+        ctx.rotate(angulo*Math.PI/180);  
+        ctx.translate(-x,-y);
+        //
+        CarroSuperior(x,y, -0.5, '#cf2634', '#b92125', '#132136', 360)
+        //
+        ctx.restore();
         
-        document.addEventListener("keydown", andar);
-        document.addEventListener("keydown", andarLados);
+    }
+    
+    onkeydown = onkeyup = function(e){
+        e = e || event; // to deal with IE
+        map[e.keyCode] = e.type == 'keydown';
+        if(map[38]) andarfrente();
+        if(map[37] && map[38]) andaresquerda();
+        if(map[39] && map[38]) andardireita()
         
-        roda();
+    }
+
+    function andarfrente(){
+        x = x + vx*dt;
+        y = y - vy*dt;
+        vx = V*Math.cos(angulo*Math.PI/180);
+        vy = V*Math.sin(angulo*Math.PI/180);
+        console.log(vx);
     }
     
-    function roda(){
-        desenha();
-        atualiza();
+    function andardireita(){
+        x = x + vx*dt;
+        y = y - vy*dt;
+        vx = V*Math.cos(angulo*Math.PI/180);
+        vy = V*Math.sin(angulo*Math.PI/180);
+
+        angulo = angulo - 1;
+    }
+    
+    function andaresquerda(){
+        x = x + vx*dt;
+        y = y - vy*dt;
+        vx = V*Math.cos(angulo*Math.PI/180);
+        vy = V*Math.sin(angulo*Math.PI/180);
+
+        angulo = angulo + 1;
+    }
+    
+    function grafico(){
+        retangulo(5, 5, 630, 350, 1, 0, darkcolor, nocolor);
         
-        window.requestAnimationFrame(roda);
+        carrinho(x, y, -angulo - 90);
+        vetor(x, y, V*2, -angulo, 1.5, darkcolor);
+        
     }
     
-    function atualiza(){
-        carro.atualiza();
-    }
-    
-    function desenha(){
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0,0, largura, altura);
-        carro.desenha();
-    }
-    
-    main();
+    draw(desenhar); 
 </script>
+<!-- ------------------------------------------------------------------------ -->
+
 </html>
