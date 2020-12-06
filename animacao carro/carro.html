@@ -214,59 +214,50 @@
         ctx.restore();
     }
     
-    function carrinho(x, y, angulo){
-        var x; y; angulo;
-        ctx.save();
-        ctx.translate(x,y);
-        ctx.rotate(angulo*Math.PI/180);  
-        ctx.translate(-x,-y);
-        //
-        CarroSuperior(x,y, -0.5, '#cf2634', '#b92125', '#132136', 360)
-        //
-        ctx.restore();
+    var carrinho = {
+        main: function(x, y, angulo){
+            
+            ctx.save();
+            ctx.translate(x,y);
+            ctx.rotate(angulo*Math.PI/180);  
+            ctx.translate(-x,-y);
+            //
+            CarroSuperior(x,y, -0.5, '#cf2634', '#b92125', '#132136', 360)
+            //
+            ctx.restore();
+        },
+        
+        mover: function(v, d){
+            x = x + (v*vx)*dt;
+            y = y - (v*vy)*dt;
+            vx = V*Math.cos(angulo*Math.PI/180);
+            vy = V*Math.sin(angulo*Math.PI/180);
+            
+            angulo += d;
+        },
         
     }
     
     onkeydown = onkeyup = function(e){
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
-        if(map[38]) andarfrente();
-        if(map[37] && map[38]) andaresquerda();
-        if(map[39] && map[38]) andardireita()
         
-    }
-
-    function andarfrente(){
-        x = x + vx*dt;
-        y = y - vy*dt;
-        vx = V*Math.cos(angulo*Math.PI/180);
-        vy = V*Math.sin(angulo*Math.PI/180);
-        console.log(vx);
-    }
-    
-    function andardireita(){
-        x = x + vx*dt;
-        y = y - vy*dt;
-        vx = V*Math.cos(angulo*Math.PI/180);
-        vy = V*Math.sin(angulo*Math.PI/180);
-
-        angulo = angulo - 1;
-    }
-    
-    function andaresquerda(){
-        x = x + vx*dt;
-        y = y - vy*dt;
-        vx = V*Math.cos(angulo*Math.PI/180);
-        vy = V*Math.sin(angulo*Math.PI/180);
-
-        angulo = angulo + 1;
+        if(map[37] && map[38]) carrinho.mover(1, 1);
+        if(map[39] && map[38]) carrinho.mover(1, -1);
+        
+        if(map[37] && map[40]) carrinho.mover(-1, -1);
+        if(map[39] && map[40]) carrinho.mover(-1, 1);
+        
+        if(map[38]) carrinho.mover(1, 0);
+        if(map[40]) carrinho.mover(-1, 0);
+        
     }
     
     function grafico(){
         retangulo(5, 5, 630, 350, 1, 0, darkcolor, nocolor);
         
-        carrinho(x, y, -angulo - 90);
-        vetor(x, y, V*2, -angulo, 1.5, darkcolor);
+        carrinho.main(x, y, -angulo - 90);
+        //vetor(x, y, V*2, -angulo, 1.5, darkcolor);
         
     }
     
