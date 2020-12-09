@@ -1,25 +1,40 @@
 <!DOCTYPE HTML>
 <html>
 <meta charset="utf-8"/>
+<style>
+    canvas{
+        background-image: url(istockphoto-1221451242-170667a.jpg);
+        background-repeat: no-repeat;
+        background-size: 150%;
+        background-position-x: -25px;
+    }
+</style>
 <canvas id="myCanvas" width="640px" height="360px"></canvas>
 <script src="http://napalmadamao.ifrn.edu.br/PSlibrary/PSlibrary2020.js"></script>   
 <script>
     //***********************************************
     var x0 = 180;
     var y0 = 240;
-    var x = 180;
-    var y = 180;
+    var x = 0;
+    var y = 160;
     
     var corGrade = 'rgba(100,100,150,0.5)';
     var corEixo = 'rgba(104, 104, 125,0.8)';
     //
-    var V = 180;
-    var angulo = 30;
+    var V = 80;
+    var angulo = 0;
     var vx = V*Math.cos(angulo*Math.PI/180);
     var vy = V*Math.sin(angulo*Math.PI/180);
     var dt = 0.016;
     var dx;
     var dy;
+    
+    let up = false;
+    let down = false;
+    let right = false;
+    let left = false;
+    
+    let direction = 0;
     
     var map = {
         "ArrowLeft": 37,
@@ -222,7 +237,7 @@
             ctx.rotate(angulo*Math.PI/180);  
             ctx.translate(-x,-y);
             //
-            CarroSuperior(x,y, -0.5, '#cf2634', '#b92125', '#132136', 360)
+            CarroSuperior(x,y, -0.3, '#cf2634', '#b92125', '#132136', 360)
             //
             ctx.restore();
         },
@@ -237,24 +252,28 @@
         },
         
     }
-    
+    //Quando aperta uma tecla específica sinaliza o seu estado como pressionado e seleciona a direção
     onkeydown = onkeyup = function(e){
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
         
-        if(map[37] && map[38]) carrinho.mover(1, 1);
-        if(map[39] && map[38]) carrinho.mover(1, -1);
+        //Frente e ré
+        if(map[38]) up = true;
+        else up = false;
+        if(map[40]) down = true;
+        else down = false
         
-        if(map[37] && map[40]) carrinho.mover(-1, -1);
-        if(map[39] && map[40]) carrinho.mover(-1, 1);
-        
-        if(map[38]) carrinho.mover(1, 0);
-        if(map[40]) carrinho.mover(-1, 0);
-        
+        //Curvas
+        if(map[37] && (map[38] || map[40])) direction = 0.85;
+        else if(map[39] && (map[38] || map[40])) direction = -0.85;
+        else direction = 0;
     }
     
     function grafico(){
         retangulo(5, 5, 630, 350, 1, 0, darkcolor, nocolor);
+        
+        if(up) carrinho.mover(1, direction);
+        if(down) carrinho.mover(-0.8, -direction);
         
         carrinho.main(x, y, -angulo - 90);
         //vetor(x, y, V*2, -angulo, 1.5, darkcolor);
