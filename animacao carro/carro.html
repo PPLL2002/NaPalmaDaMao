@@ -26,14 +26,9 @@
     var vx = V*Math.cos(angulo*Math.PI/180);
     var vy = V*Math.sin(angulo*Math.PI/180);
     var dt = 0.016;
-    var dx;
-    var dy;
     
     let up = false;
     let down = false;
-    let right = false;
-    let left = false;
-    
     let direction = 0;
     
     var map = {
@@ -41,7 +36,7 @@
         "ArrowUp": 38,
         "ArrowRight": 39,
         "ArrowDown": 40,
-    }; // You could also use an array
+    };
     
     function CarroSuperior(x, y, scale, color1, color2, color3, rotation){
         ctx.save();
