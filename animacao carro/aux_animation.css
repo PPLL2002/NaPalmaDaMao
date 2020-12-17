@@ -1,0 +1,43 @@
+.btn {
+    position: absolute;
+    left: 530px;
+    top: 15x0px;
+    -webkit-transition: all 150ms ease-out;
+    transition: all 150ms ease-out;
+    padding: 5px 10px;
+    background: white;
+    border-radius: 20px;
+    margin:10px 0;	 
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+}
+.btn:active {
+    background: #ebebeb;
+    outline: none;
+}
+/* BUTONS COLORS */
+.btnGray{
+    color: #34495e;
+    border: 2px solid #2c3e50;
+}
+
+.btnBlue{
+    background-color: #338fbf;
+    border: 2px solid #338fbf;
+    color: #fff;
+}
+.btnBlue:hover {
+    background-color:  #297299;
+    border: 2px solid #297299;
+}
+
+.btnGreen{
+    background-color: #6aa344;
+    border: 2px solid #6aa344;
+    color: #fff;
+}
+.btnGreen:hover {
+    background-color: #4c911f;
+    border: 2px solid #4c911f;
+}

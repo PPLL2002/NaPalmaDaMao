@@ -1,56 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foguete</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="aux_animation.css">
 </head>
 <body>
-    <canvas style="border: 1px solid black" id="myCanvas"></canvas>
+    <canvas id="myCanvas" width="640px" height="360px"></canvas>
+    <button class='btn btnBlue btnPlayAnimation' onclick="eixoY = true">Iniciar</button>
 </body>
+<script src="http://napalmadamao.ifrn.edu.br/PSlibrary/PSlibrary2020.js"></script>   
+<script src="PSlibrary20192.js"></script>
 <script>
-    var altura;
-    var largura;
-    var canvas = document.getElementById('myCanvas');
-    var ctx = canvas.getContext('2d');
-    
-    var carro = {
-        x: 300,
-        y: 500,
-        velocidade: 0,
-        scale: 1,
-        inercia: 0.3,
-        rotation: 0,
-        
-        atualiza: function(){  
-            if(this.velocidade == 0) this.inercia = 0   
-            else this.inercia = 0.3;
-            if(this.velocidade > 0) this.velocidade -= this.inercia;
-            if(this.velocidade < 0) this.velocidade += this.inercia;
-            
-            this.y -= this.velocidade;  
-            
-            if(this.y <= 0) {this.velocidade = 0; this.y = 0;}
-            if(this.y >= canvas.height - 100) {this.velocidade = 0; this.y = canvas.height - 100;}
-        },
-        
-        anda: function(tecla){
-            if(tecla == "ArrowUp")this.velocidade += 0.9; 
-            if(tecla == "ArrowDown")this.velocidade -= 0.9; 
-            console.log('frente')
-        },
-        
-        anda_lados: function(tecla){
-            if(tecla == "ArrowLeft")this.rotation -= 1; 
-            if(tecla == "ArrowRight")this.rotation += 1; 
-            console.log('lado')
-        },
-        
-        desenha: function(){
-            CarroSuperior(this.x,this.y, this.scale, '#cf2634', '#b92125', '#132136', this.rotation)
-        }
-    }
-    
+    //***********************************************
+    var x0 = 50;
+    var y0 = 340;
+    var x = 100;
+    var y = 268;
+    //
+    var V = 80;
+    var angulo = 90;
+    var vx = V*Math.cos(angulo*Math.PI/180);
+    var vy = V*Math.sin(angulo*Math.PI/180);
+    var dt = 0.016;
+    //
+    var eixoY = false;
+    var cont = 120;
+    //
+    var btnPlay = document.querySelector('.btnPlayAnimation')
     function CarroSuperior(x, y, scale, color1, color2, color3, rotation){
         ctx.save();
         ctx.translate(x,y);
@@ -231,49 +207,73 @@
         ctx.beginPath();
         ctx.arc(x, y, 10, 0, 2 * Math.PI);
         ctx.stroke();
-        ctx.fillStyle = '#870e13';
+        ctx.fillStyle = '#bf3333';
         ctx.fill();
         
         ctx.restore();
     }
     
-    function andar(event){
-        carro.anda(event.key);
-    }
-    
-    function andarLados(event){
-        carro.anda_lados(event.key);
-    }
-    function main(){
-        altura = window.innerHeight;
-        largura = window.innerWidth;
-        if(largura >= 500){largura = 600; altura = 600;}
-        canvas.width = largura;
-        canvas.height = altura;
+    var carrinho = {
+        main: function(x, y, angulo){
+            
+            ctx.save();
+            ctx.translate(x,y);
+            ctx.rotate(angulo*Math.PI/180);  
+            ctx.translate(-x,-y);
+            //
+            CarroSuperior(x,y, -0.2, '#246c91', '#18475E', '#132136', 360)
+            //
+            ctx.restore();
+            
+            vetor(x, y, vy*0.7, -90, 1.5, '#bf3333');
+        },
         
-        document.addEventListener("keydown", andar);
-        document.addEventListener("keydown", andarLados);
+    }
+    
+    function planoCartesiano(posX, posY){
+        numberScalePosX(posX - 4, posY, 10, 1, 50, darkcolor)
+        graduatedScale(posX + 50, posY - 16, 450, 50, 10, 0, 1, darkcolor)
+        vector(posX, posY - 22, 550, 0, 1, darkcolor)
         
-        roda();
+        graduatedScale(posX + 5, posY - 72, 200, 50, 10, -90, 1, darkcolor)
+        vector(posX, posY - 22, 280, -90, 1, darkcolor)
+        numberScalePosY(posX - 20, posY - 69, 4, 1, 50, darkcolor)
     }
     
-    function roda(){
-        desenha();
-        atualiza();
-        
-        window.requestAnimationFrame(roda);
+    function reiniciar(){
+        y = 268;
+        cont = 120;
+        eixoY = false;
+        btnPlay.textContent = 'Iniciar';
+        btnPlay.setAttribute('onclick', 'eixoY = true') 
+        btnPlay.classList.remove('btnGreen')
+        btnPlay.classList.add('btnBlue')
     }
     
-    function atualiza(){
-        carro.atualiza();
+    function grafico(){
+        retangulo(5, 5, 630, 350, 1, 0, darkcolor, nocolor);
+        //PONTOS EIXO X
+        point(x, y0 - 22, '#bf3333')
+        line(x, y0 - 22, x, y, 1, '#bf3333')
+        //PONTOS EIXO Y
+        point(x0, y, '#bf3333')
+        line(x0, y, x, y, 1, '#bf3333')
+        //DESENHO CARRINHO
+        carrinho.main(x, y, -angulo - 90);
+        //PLANO CARTESIANO
+        planoCartesiano(x0, y0)
+        if(eixoY && cont != 0){
+            y -= 1.25;
+            cont--;
+            btnPlay.textContent = 'Reiniciar';
+            btnPlay.setAttribute('onclick', 'reiniciar()') 
+            btnPlay.classList.remove('btnBlue')
+            btnPlay.classList.add('btnGreen')
+        }
     }
     
-    function desenha(){
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0,0, largura, altura);
-        carro.desenha();
-    }
-    
-    main();
+    draw(desenhar); 
 </script>
+<!-- ------------------------------------------------------------------------ -->
+
 </html>
