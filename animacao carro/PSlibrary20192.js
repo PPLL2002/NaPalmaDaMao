@@ -500,7 +500,7 @@ function numberScalePosX(x, y, width, scale, dist, color){
 //O parâmetro widht é o número de pontos na escala.
 function numberScalePosY(x, y, width, scale, dist, color){	
 	var x; y; width; scale; dist; color;
-	var N = 1;
+	var N = 2;
 	var passo = 0;
 	var dy = 0;
 	var dx = 0;	

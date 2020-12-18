@@ -221,7 +221,7 @@
             ctx.rotate(angulo*Math.PI/180);  
             ctx.translate(-x,-y);
             //
-            CarroSuperior(x,y, -0.2, '#246c91', '#18475E', '#132136', 360)
+            CarroSuperior(x,y, -0.2, '#57879f', '#3c6c83', '#132136', 360)
             //
             ctx.restore();
             
@@ -233,13 +233,15 @@
     }
     
     function planoCartesiano(posX, posY){
-        numberScalePosX(posX - 4, posY, 10, 1, 50, darkcolor)
+        numberScalePosX(posX - 4, posY, 10, 2, 50, darkcolor)
         graduatedScale(posX + 50, posY - 16, 450, 50, 10, 0, 1, darkcolor)
+        graduatedScale(posX + 25, posY - 18, 450, 50, 8, 0, 1, darkcolor)
         vector(posX, posY - 22, 550, 0, 1, darkcolor)
         
         graduatedScale(posX + 5, posY - 72, 200, 50, 10, -90, 1, darkcolor)
+        graduatedScale(posX + 4, posY - 47, 200, 50, 8, -90, 1, darkcolor)
         vector(posX, posY - 22, 280, -90, 1, darkcolor)
-        numberScalePosY(posX - 20, posY - 69, 4, 1, 50, darkcolor)
+        numberScalePosY(posX - 20, posY - 69, 4, 2, 50, darkcolor)
     }
     
     function reiniciar(){
